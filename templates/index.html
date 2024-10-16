@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enhanced Flipbook</title>
 
+    <!-- Tailwind CSS -->
+    {% tailwind_css %}
+
     <!-- Importing Google Fonts for Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -21,13 +24,45 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const flipbook = $("#flipbook");
+            let currentPage = {{ initial_pages|length }};
+            const pagesPerLoad = 4;
             
             function resizeFlipbook() {
                 const containerWidth = $(".flipbook-container").width();
-                const width = Math.min(containerWidth * 0.9, 1200); // 90% of container width, max 1200px
-                const height = width * 0.7; // Adjust aspect ratio for better fit
+                const width = Math.min(containerWidth * 0.9, 1200);
+                const height = width * 0.7;
                 
                 flipbook.turn('size', width, height);
+            }
+
+            function loadMorePages() {
+                $.ajax({
+                    url: '{% url "index" %}',
+                    method: 'GET',
+                    data: {
+                        start: currentPage + 1,
+                        end: currentPage + pagesPerLoad
+                    },
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    success: function(data) {
+                        if (data.pages.length > 0) {
+                            data.pages.forEach(function(page) {
+                                flipbook.turn('addPage', createPageElement(page), page.number);
+                            });
+                            currentPage += data.pages.length;
+                        }
+                    }
+                });
+            }
+
+            function createPageElement(pageData) {
+                return $('<div>', {
+                    class: 'flipbook-page',
+                    html: '<div class="content-wrapper">' + pageData.content + '</div>' +
+                          '<div class="page-number">' + pageData.number + '</div>'
+                });
             }
 
             // Initialize flipbook functionality
@@ -36,9 +71,12 @@
                 acceleration: true,
                 gradients: !$.isTouch,
                 elevation: 50,
+                pages: {{ initial_pages|length }},
                 when: {
-                    turned: function(e, page) {
-                        console.log('Current page: ' + page);
+                    turning: function(event, page, view) {
+                        if (page >= currentPage - 1) {
+                            loadMorePages();
+                        }
                     }
                 }
             });
@@ -54,12 +92,11 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f0f4f8;
         }
 
         .flipbook-container {
-            max-width: 1400px; /* Increased from 1200px */
-            width: 95%; /* Added to ensure some margin on very wide screens */
+            max-width: 1400px;
+            width: 95%;
             margin: 2rem auto;
             padding: 2rem;
             background-color: #F4F6FF;
@@ -81,7 +118,7 @@
         }
 
         .content-wrapper {
-            margin: 20px 50px 40px 20px; /* Adjusted to give space for page number */
+            margin: 20px 50px 40px 20px;
             text-align: justify;
         }
 
@@ -91,38 +128,23 @@
             right: 20px;
             font-size: 14px;
             color: #888;
-            z-index: 10; /* Ensure it's above other content */
+            z-index: 10;
         }
 
         .nav-button {
-            background-color: #4A90E2;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            transition: background-color 0.3s, transform 0.1s;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            margin: 0 5px;
+            @apply bg-blue-500 text-white px-4 py-2 rounded-lg transition-colors duration-300 ease-in-out;
         }
 
         .nav-button:hover {
-            background-color: #357ABD;
-        }
-
-        .nav-button:active {
-            transform: scale(0.98);
+            @apply bg-blue-600;
         }
 
         .nav-button:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
+            @apply outline-none ring-2 ring-blue-300;
         }
 
         .button-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+            @apply flex justify-center mt-5 space-x-4;
         }
     </style>
 </head>
@@ -132,41 +154,14 @@
         <div class="flipbook-container">
             <!-- Flipbook Container -->
             <div id="flipbook">
-                <!-- Page 1 -->
+                {% for page in initial_pages %}
                 <div class="flipbook-page">
                     <div class="content-wrapper">
-                        <h2 class="text-xl font-semibold">
-                            E-MODUL SISTEM PERSAMAAN LINEAR DUA VARIABEL BERBANTUAN APLIKASI PYTHON
-                            UNTUK MENINGKATKAN PENALARAN MATEMATIS SISWA SEKOLAH MENENGAH PERTAMA
-                        </h2>
-                        <p>Welcome to the first page of the enhanced flipbook! This is where you can introduce the content of the book.</p>
+                        {{ page.content|safe }}
                     </div>
-                    <div class="page-number">1</div>
+                    <div class="page-number">{{ page.number }}</div>
                 </div>
-                <!-- Page 2 -->
-                <div class="flipbook-page">
-                    <div class="content-wrapper">
-                        <h2 class="text-xl font-semibold">Chapter 1</h2>
-                        <p>Chapter 1 begins here. You can add any information, text, or images you want to include on this page.</p>
-                    </div>
-                    <div class="page-number">2</div>
-                </div>
-                <!-- Page 3 -->
-                <div class="flipbook-page">
-                    <div class="content-wrapper">
-                        <h2 class="text-xl font-semibold">Chapter 2</h2>
-                        <p>Chapter 2 contains more exciting content and expands on the ideas from Chapter 1.</p>
-                    </div>
-                    <div class="page-number">3</div>
-                </div>
-                <!-- Page 4 -->
-                <div class="flipbook-page">
-                    <div class="content-wrapper">
-                        <h2 class="text-xl font-semibold">Conclusion</h2>
-                        <p>This is the conclusion of the book. You can wrap up your ideas and summarize key points here.</p>
-                    </div>
-                    <div class="page-number">4</div>
-                </div>
+                {% endfor %}
             </div>
 
             <!-- Navigation Buttons -->

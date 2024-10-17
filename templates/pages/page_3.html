@@ -1,28 +1,34 @@
-<h2 class="text-2xl font-semibold mb-4">Interactive Color Picker</h2>
-<p class="mb-4">This page demonstrates how we can include interactive elements in our flipbook. Try out the color picker below!</p>
-<div class="mb-4">
-    <label for="colorPicker" class="block mb-2">Choose a color:</label>
-    <input type="color" id="colorPicker" class="w-full h-10 cursor-pointer">
-</div>
-<div id="colorDisplay" class="p-4 text-center rounded-lg shadow-md">
-    Selected color will appear here
-</div>
+<div class="flex flex-col items-center justify-center h-full">
+    <!-- Title -->
+    <h1 class="text-lg font-bold text-center mb-8">
+        KATA PENGANTAR
+    </h1>
 
-<script>
-    document.getElementById('colorPicker').addEventListener('input', function(e) {
-        var color = e.target.value;
-        var display = document.getElementById('colorDisplay');
-        display.style.backgroundColor = color;
-        display.style.color = getContrastColor(color);
-        display.textContent = 'Selected color: ' + color;
-    });
+    <!-- Paragraph Content -->
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p style="text-indent: 20px;">
+            Puji syukur penulis panjatkan ke hadirat Allah SWT atas segala rahmat dan karunia-Nya sehingga e-modul 
+            yang berjudul <i>"Sistem Persamaan Linier Dua Variabel Berbantuan Aplikasi Python untuk Meningkatkan 
+            Penalaran Matematis Siswa Sekolah Menengah Pertama"</i> ini dapat diselesaikan dengan baik. Modul ini disusun 
+            sebagai upaya untuk membantu siswa dalam memahami konsep Sistem Persamaan Linier Dua Variabel melalui 
+            pendekatan teknologi berbasis Python, yang diharapkan dapat meningkatkan kemampuan penalaran matematis.
+        </p>
+        <p style="text-indent: 20px;">
+            Penulis menyadari bahwa dalam penyusunan e-modul ini, masih terdapat kekurangan. Oleh karena itu, saran 
+            dan kritik yang membangun sangat penulis harapkan untuk perbaikan di masa yang akan datang. Semoga e-modul 
+            ini dapat bermanfaat bagi para siswa dan guru dalam kegiatan belajar mengajar, serta dapat berkontribusi 
+            pada pengembangan pembelajaran matematika yang lebih inovatif dan interaktif.
+        </p>
+        <p style="text-indent: 20px;">
+            Akhir kata, penulis menyampaikan terima kasih kepada semua pihak yang telah berkontribusi dalam penyusunan 
+            e-modul ini, khususnya kepada para guru dan siswa SMP Labschool FIP UMJ yang telah berpartisipasi aktif 
+            dalam uji coba, serta Tim IT yang telah berperan penting dalam pengembangan e-modul ini.
+        </p>
+    </div>
 
-    function getContrastColor(hexcolor) {
-        hexcolor = hexcolor.replace("#", "");
-        var r = parseInt(hexcolor.substr(0,2),16);
-        var g = parseInt(hexcolor.substr(2,2),16);
-        var b = parseInt(hexcolor.substr(4,2),16);
-        var yiq = ((r*299)+(g*587)+(b*114))/1000;
-        return (yiq >= 128) ? 'black' : 'white';
-    }
-</script>
+    <!-- Date and Author on the right -->
+    <div class="text-right text-sm mt-8" style="margin-left: auto; margin-right: 22px;">
+        <p>Jakarta, Oktober 2024</p>
+        <p>Penulis</p>
+    </div>
+</div>

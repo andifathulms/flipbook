@@ -1,10 +1,32 @@
-<h2 class="text-2xl font-semibold mb-4">Welcome to Our Flipbook</h2>
-<p class="mb-4">This interactive flipbook is designed to showcase various types of content and demonstrate the flexibility of our dynamic page loading system.</p>
-<p class="mb-4">As you flip through the pages, you'll encounter different layouts, information types, and interactive elements.</p>
-<ul class="list-disc list-inside mb-4">
-    <li>Textual content</li>
-    <li>Images and graphics</li>
-    <li>Interactive elements</li>
-    <li>And more!</li>
-</ul>
-<p>Enjoy exploring our flipbook!</p>
+{% load static %}
+<div class="flex flex-col items-center justify-center h-full text-center space-y-6">
+    <!-- Thesis Title -->
+    <h1 class="text-lg font-bold leading-snug">
+        E-MODUL SISTEM PERSAMAAN LINIER DUA VARIABEL<br>
+        BERBANTUAN APLIKASI PYTHON UNTUK MENINGKATKAN PENALARAN MATEMATIS SISWA SEKOLAH MENENGAH
+        PERTAMA
+    </h1>
+
+    <!-- Space and University Logo -->
+    <div style="margin-top: 5rem; margin-bottom: 5rem;">
+        <img src="{% static 'img/university_logo.png' %}" alt="university logo" class="mx-auto w-40 h-auto">
+    </div>
+
+    <!-- Author Name -->
+    <div class="text-lg font-semibold" style="margin-bottom: 3rem;">
+        HASTRI ROSIYANTI
+    </div>
+
+    <!-- University and Major Information -->
+    <div class="space-y-2">
+        <div class="text-lg font-bold">
+            PROGRAM STUDI DOKTORAL PENDIDIKAN MATEMATIKA
+        </div>
+        <div class="text-lg font-bold">
+            FAKULTAS PENDIDIKAN MATEMATIKA DAN ILMU PENGETAHUAN ALAM
+        </div>
+        <div class="text-lg font-bold">
+            UNIVERSITAS PENDIDIKAN INDONESIA
+        </div>
+    </div>
+</div>

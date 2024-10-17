@@ -1,29 +1,26 @@
-<h2 class="text-2xl font-semibold mb-4">Monthly Sales Data</h2>
-<p class="mb-4">This page showcases how we can integrate data visualizations into our flipbook using Chart.js.</p>
-<canvas id="salesChart" width="400" height="200"></canvas>
+<div class="flex flex-col items-center justify-center h-full">
+    <!-- Title -->
+    <h1 class="text-lg font-bold text-center mb-8">
+        I. Pendahuluan
+    </h1>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-<script>
-    var ctx = document.getElementById('salesChart').getContext('2d');
-    var salesChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Sales',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+    <!-- Paragraph Content -->
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p class="font-bold">A. Latar Belakang</p>
+        <p style="text-indent: 20px;">
+            Sistem Persamaan Linier Dua Variabel (SPLDV) adalah suatu sistem yang terdiri dari dua persamaan linier dengan dua variabel.
+            SPLDV digunakan untuk memodelkan dan menganalisis situasi yang melibatkan dua variabel yang terkait secara linier.
+        </p>
+        <p style="text-indent: 20px;">
+            Dalam beberapa tahun terakhir, SPLDV telah menjadi salah satu topik yang penting dalam matematika, terutama dalam bidang aljabar dan analisis.
+            Namun, masih banyak siswa dan mahasiswa yang kesulitan memahami konsep dan cara menyelesaikan SPLDV.
+        </p>
+        <p style="text-indent: 20px;">
+            SPLDV tidak hanya digunakan untuk menganalisis situasi yang melibatkan dua variabel yang terkait secara linier,
+            tetapi juga digunakan untuk melakukan penalaran dalam permasalahan yang terkait dengan SPLDV.
+            Dalam menyelesaikan SPLDV, siswa dan mahasiswa perlu memiliki kemampuan untuk mengidentifikasi variabel-variabel yang terkait,
+            membuat model matematika yang tepat, menyelesaikan sistem persamaan linier dengan dua variabel, dan menganalisis hasil penyelesaian dan membuat kesimpulan yang logis.
+            Dalam konteks ini, e-modul tentang SPLDV dapat membantu meningkatkan kemampuan siswa dan mahasiswa dalam melakukan penalaran yang logis dan sistematis dalam menyelesaikan permasalahan yang terkait dengan SPLDV.
+        </p>
+    </div>
+</div>

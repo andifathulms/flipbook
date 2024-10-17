@@ -1,0 +1,28 @@
+<h2 class="text-2xl font-semibold mb-4">Interactive Color Picker</h2>
+<p class="mb-4">This page demonstrates how we can include interactive elements in our flipbook. Try out the color picker below!</p>
+<div class="mb-4">
+    <label for="colorPicker" class="block mb-2">Choose a color:</label>
+    <input type="color" id="colorPicker" class="w-full h-10 cursor-pointer">
+</div>
+<div id="colorDisplay" class="p-4 text-center rounded-lg shadow-md">
+    Selected color will appear here
+</div>
+
+<script>
+    document.getElementById('colorPicker').addEventListener('input', function(e) {
+        var color = e.target.value;
+        var display = document.getElementById('colorDisplay');
+        display.style.backgroundColor = color;
+        display.style.color = getContrastColor(color);
+        display.textContent = 'Selected color: ' + color;
+    });
+
+    function getContrastColor(hexcolor) {
+        hexcolor = hexcolor.replace("#", "");
+        var r = parseInt(hexcolor.substr(0,2),16);
+        var g = parseInt(hexcolor.substr(2,2),16);
+        var b = parseInt(hexcolor.substr(4,2),16);
+        var yiq = ((r*299)+(g*587)+(b*114))/1000;
+        return (yiq >= 128) ? 'black' : 'white';
+    }
+</script>

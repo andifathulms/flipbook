@@ -77,6 +77,8 @@
                         if (page >= currentPage - 1) {
                             loadMorePages();
                         }
+                        // Update current page display
+                        document.getElementById('currentPage').textContent = page;
                     }
                 }
             });
@@ -86,6 +88,16 @@
             
             // Initial resize
             resizeFlipbook();
+
+            // Jump to specific page functionality
+            document.getElementById('jumpToPage').addEventListener('click', function() {
+                const pageNumber = parseInt(document.getElementById('pageNumber').value);
+                if (pageNumber && pageNumber > 0 && pageNumber <= flipbook.turn('pages')) {
+                    flipbook.turn('page', pageNumber);
+                } else {
+                    alert('Please enter a valid page number');
+                }
+            });
         });
     </script>
 
@@ -132,19 +144,83 @@
         }
 
         .nav-button {
-            @apply bg-blue-500 text-white px-4 py-2 rounded-lg transition-colors duration-300 ease-in-out;
+            background-color: #1D4ED8; /* Blue background */
+            color: white; /* White text */
+            padding: 0.75rem 1.5rem; /* Increase padding for a larger button */
+            border-radius: 0.5rem; /* Rounded corners */
+            font-weight: 600; /* Bold font */
+            font-size: 1rem; /* Font size */
+            display: inline-flex; /* Align icon and text horizontally */
+            align-items: center; /* Vertically center content */
+            gap: 0.5rem; /* Space between text and icon */
+            transition: background-color 0.3s ease; /* Smooth background color change */
         }
-
+    
         .nav-button:hover {
-            @apply bg-blue-600;
+            background-color: #2563EB; /* Darker blue on hover */
+        }
+    
+        .nav-button:active {
+            background-color: #1E40AF; /* Even darker blue when clicked */
+            transform: scale(0.98); /* Slightly scale down on click */
         }
 
-        .nav-button:focus {
-            @apply outline-none ring-2 ring-blue-300;
-        }
-
+        /* Button Container Styling */
         .button-container {
-            @apply flex justify-center mt-5 space-x-4;
+            display: flex;
+            justify-content: center; /* Center the buttons horizontally */
+            align-items: center; /* Align items vertically */
+            gap: 1rem; /* Space between buttons */
+            margin-top: 1.5rem; /* Add margin to the top of the button section */
+        }
+
+        /* Styling the Page Number Input */
+        .page-input {
+            border: 2px solid #E5E7EB; /* Light gray border */
+            border-radius: 0.5rem; /* Rounded corners */
+            padding: 0.5rem 0.75rem; /* Padding inside the box */
+            font-size: 1rem; /* Font size */
+            width: 60px; /* Set a fixed width */
+            text-align: center; /* Center the text */
+            transition: border-color 0.3s ease; /* Smooth border color change */
+        }
+
+        .page-input:focus {
+            border-color: #60A5FA; /* Light blue border when focused */
+            outline: none; /* Remove default outline */
+            box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.5); /* Blue shadow when focused */
+        }
+
+        /* Styling Jump to Page Button */
+        .jump-button {
+            background-color: #10B981; /* Green background */
+            color: white; /* White text */
+            padding: 0.5rem 1rem; /* Button padding */
+            border-radius: 0.5rem; /* Rounded corners */
+            font-weight: 600; /* Bold font */
+            font-size: 1rem; /* Font size */
+            transition: background-color 0.3s ease; /* Smooth background color change */
+            cursor: pointer;
+        }
+
+        .jump-button:hover {
+            background-color: #059669; /* Darker green on hover */
+        }
+
+        .jump-button:active {
+            background-color: #047857; /* Even darker green when clicked */
+            transform: scale(0.98); /* Slightly scale down on click */
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 640px) {
+            .nav-button {
+                padding: 0.5rem 1rem; /* Smaller padding on mobile */
+                font-size: 0.875rem; /* Slightly smaller font size */
+            }
+            .page-input {
+                width: 50px; /* Smaller input width on mobile */
+            }
         }
     </style>
 </head>
@@ -164,10 +240,33 @@
                 {% endfor %}
             </div>
 
-            <!-- Navigation Buttons -->
+            <!-- Navigation and Page Jump -->
             <div class="button-container">
-                <button id="prev" class="nav-button" onclick="$('#flipbook').turn('previous')">Previous</button>
-                <button id="next" class="nav-button" onclick="$('#flipbook').turn('next')">Next</button>
+                <button id="prev" class="nav-button" onclick="$('#flipbook').turn('previous')">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Previous
+                </button>
+                
+                <div class="flex items-center space-x-2">
+                    <span class="text-gray-600">Page</span>
+                    <span id="currentPage" class="font-semibold">1</span>
+                    <span class="text-gray-600">of</span>
+                    <span id="totalPages" class="font-semibold">6</span>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <input type="number" id="pageNumber" class="page-input w-16" min="1" max="{{ initial_pages|length }}">
+                    <button id="jumpToPage" class="jump-button">Go</button>
+                </div>
+
+                <button id="next" class="nav-button" onclick="$('#flipbook').turn('next')">
+                    Next
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
             </div>
         </div>
     </main>

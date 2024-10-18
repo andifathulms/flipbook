@@ -1,0 +1,30 @@
+<script>
+    function showImageCard(imageId) {
+        // Get the corresponding overlay
+        const overlay = document.getElementById(`overlay-${imageId}`);
+        const imgElement = document.querySelector(`[data-image-id="${imageId}"]`);
+        const cardImg = overlay.querySelector('.card-front img');
+        
+        // Set the image source
+        cardImg.src = imgElement.src;
+        cardImg.alt = imgElement.alt;
+        
+        // Show the overlay
+        overlay.style.display = 'flex';
+        
+        // Add click event to the card
+        const card = overlay.querySelector('.image-card');
+        card.onclick = function(e) {
+          e.stopPropagation();
+          this.classList.toggle('flipped');
+        };
+        
+        // Add click event to the overlay to close
+        overlay.onclick = function(e) {
+          if (e.target === overlay) {
+            overlay.style.display = 'none';
+            card.classList.remove('flipped');
+          }
+        };
+    }
+</script>

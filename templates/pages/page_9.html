@@ -1,0 +1,56 @@
+{% load static %}
+
+{% include "include/image_style.html" %}
+
+<div class="flex flex-row gap-8 p-8">
+    <!-- Left column for images - 1/4 width -->
+    <div class="w-1/4 space-y-6">
+        <figure class="flex flex-col items-center" style="margin-top: 50px;">
+            <img 
+                src="{% static 'img/al-khawarizmi.jpeg' %}" 
+                alt="Al Khawarizmi" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image4')"
+                data-image-id="image4"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Al Khawarizmi
+            </figcaption>
+        </figure>
+
+        <figure class="flex flex-col items-center" style="margin-top: 130px;">
+            <img 
+                src="{% static 'img/omar_khayyam.JPG' %}" 
+                alt="Omar Khayyam" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image5')"
+                data-image-id="image5"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Omar Khayyam
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- Right column for text - 3/4 width -->
+    <div class="w-3/4 space-y-4">
+        <p class="text-sm text-justify leading-relaxed">
+            <p class="font-bold">3) Matematika di Dunia Islam</p>
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>a) Al-Khawarizmi (780-850 M)</strong>: Salah satu tokoh paling berpengaruh dalam sejarah aljabar, Al-Khwarizmi menulis <i>Al-Kitab al-Mukhtasar fi Hisab al-Jabr wal-Muqabala</i> yang mengembangkan metode untuk menyelesaikan persamaan linear dan kuadrat. 
+                Ia memperkenalkan istilah <strong>"al-jabr"</strong> (penyempurnaan) dan <strong>"al-muqabala"</strong> (penyeimbangan), yang menjadi dasar dari aljabar. Meskipun Al-Khwarizmi tidak secara eksplisit membahas SPLDV, 
+                metode aljabarnya menjadi landasan bagi perkembangan sistem persamaan linear.
+            </p>
+        </p>
+
+        <div class="space-y-4">
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>b) Omar Khayyam (1048-1131 M)</strong>: Selain karyanya dalam sastra, Khayyam adalah ahli matematika yang memecahkan persamaan aljabar menggunakan geometri. 
+                Ia juga memperluas konsep persamaan linear dalam konteks geometri yaitu memberikan wawasan lebih dalam tentang hubungan antara variabel.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+{% include "include/image_js.html" %}

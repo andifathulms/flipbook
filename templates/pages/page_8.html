@@ -2,74 +2,70 @@
 
 {% include "include/image_style.html" %}
 
-<div class="flex flex-col items-center justify-center h-full">
-    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
-        <p style="margin-left: 20px;">
+<div class="flex flex-row gap-8 p-8">
+    <!-- Left column for images - 1/4 width -->
+    <div class="w-1/4 space-y-6">
+        <figure class="flex flex-col items-center" style="margin-top: 50px;">
+            <img 
+                src="{% static 'img/Rhind_Papyrus.jpg' %}" 
+                alt="Papirus Rhind" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image1')"
+                data-image-id="image1"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Papirus Rhind
+            </figcaption>
+        </figure>
+
+        <figure class="flex flex-col items-center" style="margin-top: 130px;">
+            <img 
+                src="{% static 'img/euclid.jpg' %}" 
+                alt="Euclid" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image2')"
+                data-image-id="image2"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Euclid
+            </figcaption>
+        </figure>
+
+        <figure class="flex flex-col items-center" style="margin-top: 50px;">
+            <img 
+                src="{% static 'img/diophantus.jpg' %}" 
+                alt="Diophantus" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image3')"
+                data-image-id="image3"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Diophantus
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- Right column for text - 3/4 width -->
+    <div class="w-3/4 space-y-4">
+        <p class="text-sm text-justify leading-relaxed">
             sederhana untuk menyelesaikan persamaan linear satu variabel. Mereka mengembangkan metode yang dikenal sebagai "<i>false position</i>" 
             untuk memecahkan masalah berbasis persamaan linear. Dokumen ini mencatat beberapa masalah yang dapat diselesaikan dengan metode yang mirip dengan SPLDV, menunjukkan pemahaman awal tentang hubungan antara dua variabel.
         </p>
 
-        <figure class="flex flex-col items-center">
-            <img 
-                src="{% static 'img/Rhind_Papyrus.jpg' %}" 
-                alt="Papirus Rhind" 
-                class="mx-auto w-60 h-auto cursor-pointer" 
-                onclick="showImageCard('image1')"
-                data-image-id="image1"
-            >
-            <figcaption class="text-center text-xs mt-2 italic">Papirus Rhind</figcaption>
-        </figure>
-
-        <p class="font-bold" style="text-indent: 10px;">2) Perkembangan di Yunani kuno</p>
-        <p style="margin-left: 20px;">
-            <strong>a) Euclid (300 SM)</strong>: Dalam <i>Elements</i>, Euclid memperkenalkan konsep geometri yang mendasari persamaan linear. 
-            Meskipun ia lebih fokus pada geometri, banyak teorema Euclid memberikan landasan untuk analisis garis lurus dan hubungan antara variabel, yang relevan dengan SPLDV.
-        </p>
-
-        <figure class="flex flex-col items-center">
-            <img 
-                src="{% static 'img/euclid.jpg' %}" 
-                alt="Papirus Rhind" 
-                class="mx-auto w-40 h-40 cursor-pointer" 
-                onclick="showImageCard('image2')"
-                data-image-id="image2"
-            >
-            <figcaption class="text-center text-xs mt-2 italic">Euclid</figcaption>
-        </figure>
-    </div>
-</div>
-
-<div class="image-card-overlay" id="overlay-image1">
-    <div class="image-card" id="card-image1">
-    <div class="card-inner">
-        <div class="card-front">
-        <img src="" alt="Papirus Rhind">
+        <div class="space-y-4">
+            <p class="font-bold">2) Perkembangan di Yunani kuno</p>
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>a) Euclid (300 SM)</strong>: Dalam <i>Elements</i>, Euclid memperkenalkan konsep geometri yang mendasari persamaan linear. 
+                Meskipun ia lebih fokus pada geometri, banyak teorema Euclid memberikan landasan untuk analisis garis lurus dan hubungan antara variabel, yang relevan dengan SPLDV.
+            </p>
         </div>
-        <div class="card-back">
-        <p>
-            Papirus Rhind adalah salah satu dokumen matematika kuno yang paling terkenal dari peradaban Mesir Kuno. Dokumen ini disalin oleh seorang juru tulis bernama Ahmes sekitar tahun 1650 SM, 
-            tetapi diyakini merupakan salinan dari teks yang lebih tua dari sekitar 2000 SM. Papirus ini dinamai sesuai dengan nama penemunya, Alexander Henry Rhind, seorang arkeolog Skotlandia yang membelinya pada tahun 1858. 
-            Papirus Rhind memberikan wawasan tentang bagaimana matematika diterapkan secara praktis di Mesir kuno, dan ini adalah salah satu dokumen penting yang menunjukkan kemampuan matematika masyarakat kuno sebelum metode aljabar formal berkembang di dunia Islam dan Eropa.
-        </p>
-        </div>
-    </div>
-    </div>
-</div>
 
-<div class="image-card-overlay" id="overlay-image2">
-    <div class="image-card" id="card-image2">
-    <div class="card-inner">
-        <div class="card-front">
-        <img src="" alt="Papirus Rhind">
+        <div class="space-y-4">
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>b) Diophantus (Sekitar 250 SM)</strong>: Diophantus dikenal sebagai "Bapak Aljabar" dan menulis <i>Arithmetica</i>, yang membahas penyelesaian persamaan linear dan kuadrat. 
+                Meskipun Diophantus terutama bekerja dengan bilangan bulat, ia memberikan kontribusi signifikan terhadap pengembangan persamaan linear. Karyanya memberikan fondasi penting untuk pengembangan aljabar dan SPLDV
+            </p>
         </div>
-        <div class="card-back">
-        <p>
-            Euclid adalah seorang matematikawan Yunani yang hidup sekitar tahun 300 SM, meskipun tanggal kelahiran dan kematiannya tidak diketahui secara pasti. Ia tinggal dan bekerja di Alexandria, Mesir, di bawah pemerintahan Ptolemaios I. 
-            Euclid terkenal sebagai "Bapak Geometri" karena kontribusinya yang luar biasa dalam pengembangan geometri melalui karyanya yang paling terkenal, "Elements" (Elemen). Karya Euclid tidak hanya berpengaruh pada matematika, tetapi juga menjadi
-            dasar dari pendidikan matematika selama berabad-abad. Prinsip-prinsipnya tentang pembuktian logis dan struktur deduktif menjadi standar dalam penelitian ilmiah dan matematika modern.
-        </p>
-        </div>
-    </div>
     </div>
 </div>
 

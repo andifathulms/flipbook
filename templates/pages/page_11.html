@@ -1,0 +1,40 @@
+{% load static %}
+
+{% include "include/image_style.html" %}
+
+<div class="flex flex-row gap-8 p-8">
+    <!-- Left column for images - 1/4 width -->
+    <div class="w-1/4 space-y-6">
+        <figure class="flex flex-col items-center" style="margin-top 150px;">
+            <img 
+                src="{% static 'img/hamilton.jpg' %}" 
+                alt="William Rowan Hamilton" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image9')"
+                data-image-id="image9"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                William Rowan Hamilton
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- Right column for text - 3/4 width -->
+    <div class="w-3/4 space-y-4">
+        <p class="text-sm text-justify leading-relaxed">
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>b) William Rowan Hamilton (1805–1865)</strong>: Hamilton seorang matematikawan Irlandia mengembangkan notasi matriks yang berperan besar dalam menyelesaikan sistem persamaan linear, termasuk SPLDV, melalui representasi matriks. 
+            </p>
+        </p>
+
+        <div class="space-y-4">
+            <p class="text-sm text-justify leading-relaxed">
+                Konsep persamaan linear telah ada sejak zaman kuno, dengan catatan penggunaan aritmetika di Mesir dan Babilonia. 
+                Namun, pengembangan formal dari sistem persamaan muncul lebih jelas di peradaban Yunani kuno dengan matematikawan seperti <strong>Euclid</strong> yang menyelidiki sifat-sifat angka dan hubungan antara angka.
+            </p>
+        </div>
+
+    </div>
+</div>
+
+{% include "include/image_js.html" %}

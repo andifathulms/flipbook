@@ -29,9 +29,9 @@
             
             function resizeFlipbook() {
                 const containerWidth = $(".flipbook-container").width();
-                const width = Math.min(containerWidth * 0.9, 1200);
-                const height = width * 0.7;
-                
+                const width = Math.min(containerWidth * 0.95, 1600);
+                const height = width * 0.65;
+            
                 flipbook.turn('size', width, height);
             }
 
@@ -121,16 +121,19 @@
         }
 
         .flipbook-page {
+            width: 100%;  /* Set width to 100% of the flipbook */
+            height: 100%; /* Ensure height matches flipbook container */
             background-color: white;
             border: 1px solid #eaeaea;
-            padding: 20px;
-            font-size: 16px;
             position: relative;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset;
+            /* Remove padding inside the flipbook page */
+            padding: 0;
         }
 
         .content-wrapper {
-            margin: 20px 50px 40px 20px;
+            padding: 40px 50px 40px 20px;
+            margin: 0; /* Remove any external margin */
             text-align: justify;
         }
 
@@ -222,6 +225,16 @@
                 width: 50px; /* Smaller input width on mobile */
             }
         }
+
+        @media (max-width: 768px) {
+            .content-wrapper > div {
+                flex-direction: column;
+            }
+            
+            .content-wrapper > div > div {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -253,7 +266,7 @@
                     <span class="text-gray-600">Page</span>
                     <span id="currentPage" class="font-semibold">1</span>
                     <span class="text-gray-600">of</span>
-                    <span id="totalPages" class="font-semibold">6</span>
+                    <span id="totalPages" class="font-semibold">10</span>
                 </div>
 
                 <div class="flex items-center space-x-2">
@@ -267,6 +280,159 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
+            </div>
+
+            <!-- Card Overlay -->
+            <div id="card-overlay">
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image1">
+                    <div class="image-card" id="card-image1">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img src="" alt="Papirus Rhind">
+                            </div>
+                            <div class="card-back">
+                                <p>
+                                    Papirus Rhind adalah salah satu dokumen matematika kuno yang paling terkenal dari peradaban Mesir Kuno. Dokumen ini disalin oleh seorang juru tulis bernama Ahmes sekitar tahun 1650 SM, 
+                                    tetapi diyakini merupakan salinan dari teks yang lebih tua dari sekitar 2000 SM. Papirus ini dinamai sesuai dengan nama penemunya, Alexander Henry Rhind, seorang arkeolog Skotlandia yang membelinya pada tahun 1858. 
+                                    Papirus Rhind memberikan wawasan tentang bagaimana matematika diterapkan secara praktis di Mesir kuno, dan ini adalah salah satu dokumen penting yang menunjukkan kemampuan matematika masyarakat kuno sebelum metode aljabar formal berkembang di dunia Islam dan Eropa.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image2">
+                    <div class="image-card" id="card-image2">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Euclid">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            Euclid adalah seorang matematikawan Yunani yang hidup sekitar tahun 300 SM, meskipun tanggal kelahiran dan kematiannya tidak diketahui secara pasti. Ia tinggal dan bekerja di Alexandria, Mesir, di bawah pemerintahan Ptolemaios I. 
+                            Euclid terkenal sebagai "Bapak Geometri" karena kontribusinya yang luar biasa dalam pengembangan geometri melalui karyanya yang paling terkenal, "Elements" (Elemen). Karya Euclid tidak hanya berpengaruh pada matematika, tetapi juga menjadi
+                            dasar dari pendidikan matematika selama berabad-abad. Prinsip-prinsipnya tentang pembuktian logis dan struktur deduktif menjadi standar dalam penelitian ilmiah dan matematika modern.
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image3">
+                    <div class="image-card" id="card-image3">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Diophantus">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            Diophantus adalah seorang matematikawan Yunani yang hidup sekitar abad ke-3 M, dengan perkiraan kelahiran dan kematian antara 200 M dan 284 M, meskipun tanggal pasti kelahirannya tidak diketahui. 
+                            Dikenal sebagai "Bapak Aljabar" karena kontribusinya dalam pengembangan aljabar dan pemecahan persamaan. Diophantus tinggal di Alexandria dan menulis karya terkenal berjudul "Arithmetica", yang terdiri dari beberapa buku yang membahas solusi persamaan dan bilangan bulat. 
+                            Diophantus membuka jalan bagi pengembangan aljabar di era selanjutnya dan menjadi referensi penting bagi matematikawan seperti Pierre de Fermat, yang terkenal dengan Teorema Terakhir Fermat yang terkait dengan persamaan Diophantine. Meskipun Diophantus dikenal karena solusi bilangan rasional, 
+                            gagasan tentang persamaan Diophantine tetap relevan hingga hari ini dalam teori bilangan dan kriptografi.
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image4">
+                    <div class="image-card" id="card-image4">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Al Khawarizmi">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            Al-Khwarizmi (nama lengkap: Muhammad ibn Musa al-Khwarizmi) adalah seorang matematikawan, astronom, dan ahli geografi dari Persia yang hidup sekitar tahun 780 M hingga 850 M. Ia dikenal sebagai salah satu tokoh paling berpengaruh dalam pengembangan aljabar dan matematika secara umum. 
+                            Al-Khwarizmi bekerja di "Baitul Hikmah" (House of Wisdom) di Baghdad, sebuah pusat penelitian dan pembelajaran yang terkenal pada masa Kekhalifahan Abbasiyah.
+                            Karya Al-Khwarizmi sangat berpengaruh dalam perkembangan matematika di dunia Islam dan Eropa. Bukunya diterjemahkan ke dalam bahasa Latin pada abad ke-12, sehingga memperkenalkan konsep aljabar ke Eropa dan menjadi landasan bagi matematika modern. 
+                            Kontribusinya dalam bidang aljabar dan aritmetika masih digunakan hingga saat ini, menjadikannya salah satu tokoh paling penting dalam sejarah matematika.
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image5">
+                    <div class="image-card" id="card-image5">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Omar Khayyam">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            Omar Khayyam (nama lengkap: Ghiyath al-Din Abu'l-Fath Umar ibn Ibrahim Al-Nisaburi al-Khayyami) adalah seorang polymath Persia yang hidup antara tahun 1048 M dan 1131 M. Ia terkenal sebagai seorang matematikawan, astronom, filsuf, dan penyair. 
+                            Meskipun Khayyam lebih dikenal di dunia Barat karena puisi-puisinya, terutama melalui karyanya "Rubaiyat", kontribusinya dalam matematika dan sains juga sangat berpengaruh. Dalam matematika, karyanya tentang persamaan kubik dan kalender berkontribusi besar pada perkembangan matematika Islam dan dunia
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image6">
+                    <div class="image-card" id="card-image6">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Rene Descartes">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            René Descartes (1596–1650) adalah seorang filsuf, matematikawan, dan ilmuwan Prancis yang sering disebut sebagai Bapak Filsafat Modern dan salah satu tokoh kunci dalam Rperubahan Ilmiah. 
+                            Ia terkenal karena pengembangan metode berpikir rasional dan kontribusinya terhadap perkembangan matematika. Dalam matematika, geometri analitiknya menjadi dasar untuk perkembangan lebih lanjut, seperti kalkulus dan fisika.
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image7">
+                    <div class="image-card" id="card-image7">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Blaise Pascal">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            Blaise Pascal (1623–1662) adalah seorang matematikawan, fisikawan, filsuf, dan teolog Prancis yang membuat kontribusi penting di berbagai bidang, termasuk matematika, fisika, dan agama. 
+                            Meskipun hidupnya singkat, Pascal dikenal sebagai salah satu pemikir besar dalam sejarah. Pascal meninggalkan warisan besar dalam ilmu pengetahuan dan filsafat. Penelitiannya dalam teori probabilitas menjadi dasar penting dalam banyak bidang modern. Prinsip Pascal tetap digunakan dalam fisika dan teknik.
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image8">
+                    <div class="image-card" id="card-image8">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Gauss">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            Carl Friedrich Gauss (1777–1855) adalah seorang matematikawan dan ilmuwan Jerman yang dianggap sebagai salah satu matematikawan terbesar sepanjang masa. Ia sering disebut sebagai "Pangeran Matematika" karena kontribusinya yang luar biasa dalam berbagai cabang matematika dan ilmu pengetahuan. 
+                            Gauss memiliki pengaruh yang sangat luas dalam matematika dan sains. Karyanya dalam teori bilangan, geometri, statistik, dan fisika masih menjadi dasar dalam berbagai disiplin ilmu. Banyak dari hasil karyanya diterapkan dalam teknologi modern, termasuk teori bilangan yang menjadi dasar kriptografi
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75" id="overlay-image9">
+                    <div class="image-card" id="card-image8">
+                    <div class="card-inner">
+                        <div class="card-front">
+                        <img src="" alt="Gauss">
+                        </div>
+                        <div class="card-back">
+                        <p>
+                            William Rowan Hamilton (1805–1865) adalah seorang matematikawan, fisikawan, dan astronom Irlandia yang terkenal karena kontribusinya yang signifikan dalam bidang matematika, terutama dalam mekanika dan analisis. 
+                            Ia dianggap sebagai salah satu pemikir terpenting dalam sejarah matematika. Ia diakui sebagai salah satu tokoh terpenting dalam perkembangan matematika dan fisika di abad ke-19.
+                        </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

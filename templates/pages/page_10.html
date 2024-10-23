@@ -1,0 +1,75 @@
+{% load static %}
+
+{% include "include/image_style.html" %}
+
+<div class="flex flex-row gap-8 p-8">
+    <!-- Left column for images - 1/4 width -->
+    <div class="w-1/4 space-y-6">
+        <figure class="flex flex-col items-center">
+            <img 
+                src="{% static 'img/rene-descartes.jpg' %}" 
+                alt="Rene Descartes" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image6')"
+                data-image-id="image6"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Rene Descartes
+            </figcaption>
+        </figure>
+
+        <figure class="flex flex-col items-center" style="margin-top: 65px;">
+            <img 
+                src="{% static 'img/pascal.png' %}" 
+                alt="Blaise Pascal" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image7')"
+                data-image-id="image7"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Blaise Pascal
+            </figcaption>
+        </figure>
+
+        <figure class="flex flex-col items-center" style="margin-top: 65px;">
+            <img 
+                src="{% static 'img/gauss.jpg' %}" 
+                alt="Carl Friedrich Gauss" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image8')"
+                data-image-id="image8"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                Carl Friedrich Gauss
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- Right column for text - 3/4 width -->
+    <div class="w-3/4 space-y-4">
+        <p class="text-sm text-justify leading-relaxed">
+            <p class="font-bold">4) Eropa Abad Pertengahan dan Renaisans</p>
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>a) René Descartes (1596–1650)</strong>: Dalam karyanya <i>La Géométrie</i>, Descartes memperkenalkan <strong>geometri analitik</strong>, yang memungkinkan persamaan linear dua variabel digambarkan dalam sistem koordinat kartesius. 
+                Ini adalah terobosan penting karena memungkinkan penyelesaian SPLDV dengan pendekatan grafis.
+            </p>
+        </p>
+
+        <div class="space-y-4">
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>b) Blaise Pascal (1623–1662)</strong>: Pascal, meskipun lebih dikenal dalam teori probabilitas, juga berkontribusi pada pengembangan aljabar dan geometri, termasuk analisis persamaan linear.
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            <p class="font-bold">5) Era Modern: Penyelesaian Formal SPLDV</p>
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>a) Carl Friedrich Gauss (1777–1855)</strong>: Dikenal karena karyanya dalam aljabar, Gauss mengembangkan metode eliminasi yang masih digunakan dalam penyelesaian sistem persamaan hingga saat ini. Ia juga berkontribusi pada teori matriks. 
+                Gauss mengembangkan metode eliminasi yang sekarang dikenal sebagai <strong>Eliminasi Gauss</strong>, yang merupakan cara sistematis untuk menyelesaikan sistem persamaan linear, termasuk SPLDV. Metode ini sangat penting dalam aljabar linier dan diterapkan dalam komputasi modern. 
+            </p>
+        </div>
+
+    </div>
+</div>
+
+{% include "include/image_js.html" %}

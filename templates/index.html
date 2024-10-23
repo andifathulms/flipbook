@@ -92,7 +92,7 @@
             // Jump to specific page functionality
             document.getElementById('jumpToPage').addEventListener('click', function() {
                 const pageNumber = parseInt(document.getElementById('pageNumber').value);
-                if (pageNumber && pageNumber > 0 && pageNumber <= flipbook.turn('pages')) {
+                if (pageNumber && pageNumber > 0) {
                     flipbook.turn('page', pageNumber);
                 } else {
                     alert('Please enter a valid page number');
@@ -266,7 +266,7 @@
                     <span class="text-gray-600">Page</span>
                     <span id="currentPage" class="font-semibold">1</span>
                     <span class="text-gray-600">of</span>
-                    <span id="totalPages" class="font-semibold">10</span>
+                    <span id="totalPages" class="font-semibold">{{ total_pages }}</span>
                 </div>
 
                 <div class="flex items-center space-x-2">

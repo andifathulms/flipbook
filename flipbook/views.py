@@ -30,6 +30,7 @@ def index(request: HttpRequest) -> HttpResponse:
                 'content': page_content
             })
         context_data = {
-            'initial_pages': pages_content
+            'initial_pages': pages_content,
+            'total_pages': 14
         }
         return render(request, "index.html", context_data)

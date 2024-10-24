@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Flipbook</title>
+    <title>SPLDV Flipbook</title>
 
     <!-- Tailwind CSS -->
     {% tailwind_css %}
@@ -24,37 +24,66 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const flipbook = $("#flipbook");
+            let loadedPages = new Set();  // Keep track of loaded pages
             let currentPage = {{ initial_pages|length }};
             const pagesPerLoad = 4;
-            
+            const totalPages = {{ total_pages }};
+
+            // Initialize loaded pages with initial pages
+            for (let i = 1; i <= currentPage; i++) {
+                loadedPages.add(i);
+            }
+
             function resizeFlipbook() {
                 const containerWidth = $(".flipbook-container").width();
                 const width = Math.min(containerWidth * 0.95, 1600);
                 const height = width * 0.65;
-            
                 flipbook.turn('size', width, height);
             }
 
-            function loadMorePages() {
-                $.ajax({
-                    url: '{% url "index" %}',
-                    method: 'GET',
-                    data: {
-                        start: currentPage + 1,
-                        end: currentPage + pagesPerLoad
-                    },
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    success: function(data) {
-                        if (data.pages.length > 0) {
-                            data.pages.forEach(function(page) {
-                                flipbook.turn('addPage', createPageElement(page), page.number);
-                            });
-                            currentPage += data.pages.length;
+            async function loadPageRange(start, end) {
+                try {
+                    const response = await $.ajax({
+                        url: '{% url "index" %}',
+                        method: 'GET',
+                        data: {
+                            start: start,
+                            end: end
+                        },
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
                         }
+                    });
+        
+                    if (response.pages.length > 0) {
+                        response.pages.forEach(function(page) {
+                            if (!loadedPages.has(page.number)) {
+                                flipbook.turn('addPage', createPageElement(page), page.number);
+                                loadedPages.add(page.number);
+                            }
+                        });
                     }
-                });
+                } catch (error) {
+                    console.error('Error loading pages:', error);
+                }
+            }
+
+            async function jumpToPage(pageNumber) {
+                pageNumber = parseInt(pageNumber);
+                if (!pageNumber || pageNumber < 1 || pageNumber > totalPages) {
+                    alert('Please enter a valid page number between 1 and ' + totalPages);
+                    return;
+                }
+
+                // Load all pages up to the target if they're not loaded
+                if (!loadedPages.has(pageNumber)) {
+                    const startLoad = Math.min(...loadedPages) - 1;
+                    const endLoad = pageNumber;
+                    await loadPageRange(startLoad, endLoad);
+                }
+
+                // Now that pages are loaded, jump to the target page
+                flipbook.turn('page', pageNumber);
             }
 
             function createPageElement(pageData) {
@@ -71,11 +100,14 @@
                 acceleration: true,
                 gradients: !$.isTouch,
                 elevation: 50,
-                pages: {{ initial_pages|length }},
+                pages: totalPages,
                 when: {
                     turning: function(event, page, view) {
-                        if (page >= currentPage - 1) {
-                            loadMorePages();
+                        // Load next batch of pages if approaching the end of loaded pages
+                        if (page >= Math.max(...loadedPages) - 2) {
+                            const nextStart = Math.max(...loadedPages) + 1;
+                            const nextEnd = nextStart + pagesPerLoad - 1;
+                            loadPageRange(nextStart, nextEnd);
                         }
                         // Update current page display
                         document.getElementById('currentPage').textContent = page;
@@ -85,18 +117,14 @@
 
             // Resize flipbook on window resize
             $(window).resize(resizeFlipbook);
-            
+
             // Initial resize
             resizeFlipbook();
 
             // Jump to specific page functionality
             document.getElementById('jumpToPage').addEventListener('click', function() {
                 const pageNumber = parseInt(document.getElementById('pageNumber').value);
-                if (pageNumber && pageNumber > 0) {
-                    flipbook.turn('page', pageNumber);
-                } else {
-                    alert('Please enter a valid page number');
-                }
+                jumpToPage(pageNumber);
             });
         });
     </script>

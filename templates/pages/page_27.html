@@ -1,0 +1,87 @@
+<style>
+    /* Any custom animations we need */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+
+<div class="flex flex-col items-center justify-center h-full">
+    <!-- Equation Card -->
+    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg">
+        <!-- Equation Container -->
+        <div 
+            id="equation" 
+            class="text-4xl text-center mb-8 cursor-pointer select-none"
+            onclick="toggleHighlight()"
+        >
+            <span id="leftSide" class="px-3 py-1 transition-colors duration-300 rounded">x+6</span>
+            <span id="equals" class="px-3 py-1 transition-colors duration-300 rounded">=</span>
+            <span id="rightSide" class="px-3 py-1 transition-colors duration-300 rounded">7</span>
+        </div>
+
+        <!-- Explanation Box -->
+        <div id="explanation" class="hidden">
+            <div class="space-y-4">
+                <!-- Legend -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 text-sm">
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-blue-200 rounded"></div>
+                        <span>Ruas Kiri</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-green-200 rounded"></div>
+                        <span>Sama Dengan</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-4 h-4 bg-yellow-200 rounded"></div>
+                        <span>Ruas Kanan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <p class="text-gray-600 text-sm text-center mt-6">
+            Klik persamaan untuk melihat penjelasan
+        </p>
+    </div>
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p style="text-indent: 20px; margin-top: 15px;">
+            Dalam logika matematika persamaan yang memuat ekspresi aljabar merupakan pernyataan yang belum diketahui nilai kebenarannya dan disebut kalimat terbuka. 
+            Problem dalam suatu persamaan adalah mencari bilangan/nilai/besaran untuk menggantikan posisi variabel dalam persamaan sehingga persamaan tersebut menjadi pernyataan yang bernilai benar. 
+            Sebagai contoh dalam persamaan \(x+6=7\) apabila \(x\) kita ganti dengan bilangan 1 maka persamaannya berubah menjadi \(1+6=7\) yang merupakan kalimat/pernyataan yang bernilai benar. 
+            Jadi dalam kasus ini jawaban dari persamaan \(x+6=7\) adalah 1.
+        </p>
+        <p style="text-indent: 20px;">
+            Dengan kata lain nilai yang dicari untuk menggantikan variabel \(x\) dalam persamaan tersebut adalah 1. Dalam bentuk simbolik kita tulis \(x=1\). 
+            Perhatikan bahwa secara terpisah  juga merupakan suatu persamaan. Kita ketahui bahwa pertukaran dua ruas dari persamaan tidak mengubah makna/problem dari persamaan. 
+            Sebagai contoh persamaan \(x+6=7\) dapat ditulis menjadi \(7=x+6\) dan memiliki jawaban yang sama.
+        </p>
+    </div>
+</div>
+
+<script>
+    let isHighlighted = false;
+    const leftSide = document.getElementById('leftSide');
+    const equals = document.getElementById('equals');
+    const rightSide = document.getElementById('rightSide');
+    const explanation = document.getElementById('explanation');
+
+    function toggleHighlight() {
+        isHighlighted = !isHighlighted;
+        
+        if (isHighlighted) {
+            leftSide.classList.add('bg-blue-200');
+            equals.classList.add('bg-green-200');
+            rightSide.classList.add('bg-yellow-200');
+            explanation.classList.remove('hidden');
+            explanation.style.animation = 'fadeIn 0.3s ease-in-out';
+        } else {
+            leftSide.classList.remove('bg-blue-200');
+            equals.classList.remove('bg-green-200');
+            rightSide.classList.remove('bg-yellow-200');
+            explanation.classList.add('hidden');
+        }
+    }
+</script>

@@ -1,0 +1,118 @@
+<style>
+    .arrow {
+        cursor: pointer;
+        font-weight: bold;
+        color: #007bff; /* Arrow color */
+        margin-left: 10px;
+    }
+
+    .hidden-expression {
+        display: none;
+        font-style: italic;
+        margin-left: 15px;
+        color: green;
+    }
+
+    .expression-container {
+        margin-top: 5px !important;
+    }
+</style>
+
+<div class="flex flex-col items-center justify-center h-full">
+
+    <!-- Paragraph Content -->
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p style="text-indent: 20px;">
+            Kalimat pertama kita tuliskan menjadi \(x+5\). Perhatikan bahwa kalimat pertama dapat diinterpretasikan pula \(5+x\), namun perlu dipilih salah satu untuk memperlihatkan kekonsistenan urutan yang dipakai dalam symbol dan kalimat. 
+            Saat ini kita belum melihat lebih jauh bahwa jika dibandingkan kedua bentuk simbolik memiliki hasil yang sama agar lebih fokus pengenalan variabel dan simbol matematika dalam suatu kalimat.
+        </p>
+        <p style="text-indent: 20px;">
+            Kalimat kedua dituliskan dalam simbol menjadi \(x-4\). Kalimat ketiga dituliskan menjadi \(2*x\). 
+            Bentuk \(2*x\) dapat dituliskan dengan cara lain yaitu \(2.x\) atau \(2x\). Perhatikan bahwa penulisan \(2x\) diinterpretasikan sebagai perkalian antara bilangan 2 dengan variabel \(x\). 
+            Akan tetapi kita juga dapat mengartikan penulisan \(2x\) sebagai suatu bilangan yang disusun dari 2 dan \(x\) dimana 2 menempati posisi puluhan dan \(x\) menempati posisi satuan dengan \(x\) juga mewakili bilangan yang belum diketahui. 
+            Untuk membedakan interpretasi ini kita perlu menyatakan bahwa \(2x\) adalah bilangan dua digit. Bentuk-bentuk simbolik dari 3 kalimat pertama ini yaitu:
+        </p>
+        <div class="expression-container">
+            1. Suatu bilangan ditambah lima. 
+            <span class="arrow" onclick="toggleExpression(1)">→</span>
+            <span id="expression-1" class="hidden-expression">x + 5</span>
+        </div>
+        
+        <div class="expression-container">
+            2. Suatu bilangan dikurangi empat. 
+            <span class="arrow" onclick="toggleExpression(2)">→</span>
+            <span id="expression-2" class="hidden-expression">x - 4</span>
+        </div>
+        
+        <div class="expression-container">
+            3. Suatu bilangan dikali dua. 
+            <span class="arrow" onclick="toggleExpression(3)">→</span>
+            <span id="expression-3" class="hidden-expression">2x</span>
+        </div>
+        <p style="text-indent: 20px;">
+            Bentuk-bentuk tersebut kita katakan sebagai <strong>ekspresi aljabar</strong> (yang melibatkan satu variabel).
+        </p>
+        <table class="border-collapse border border-slate-400 mx-auto">
+            <thead>
+                <tr>
+                    <th class="border border-slate-300 p-1">No</th>
+                    <th class="border border-slate-300 p-1">Kalimat</th>
+                    <th class="border border-slate-300 p-1">Ekspresi Aljabar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">1</td>
+                    <td class="border border-slate-300 p-1">Suatu bilangan ditambah lima</td>
+                    <td class="border border-slate-300 p-1 text-center">\(x+5\)</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">2</td>
+                    <td class="border border-slate-300 p-1">Suatu bilangan dikurangi empat</td>
+                    <td class="border border-slate-300 p-1 text-center">\(x-4\)</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">3</td>
+                    <td class="border border-slate-300 p-1">Suatu bilangan dikali dua</td>
+                    <td class="border border-slate-300 p-1 text-center">
+                        <div style="display: flex; align-items: center;">
+                            <input id="input-3" type="text" placeholder="?" class="p-1 border border-slate-300 w-12 text-center">
+                            <button onclick="checkAnswer()" class="ml-2 p-1 bg-blue-500 text-white rounded">Check</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="feedback" class="mx-auto"></div>
+    </div>
+</div>
+
+<script>
+    function toggleExpression(num) {
+        const expression = document.getElementById(`expression-${num}`);
+        // Toggle the display between 'none' and 'inline'
+        if (expression.style.display === 'none' || expression.style.display === '') {
+            expression.style.display = 'inline';
+        } else {
+            expression.style.display = 'none';
+        }
+    }
+
+    function checkAnswer() {
+        const input = document.getElementById("input-3").value.trim();
+        const feedback = document.getElementById("feedback");
+        const correctAnswer = "2x";
+
+        if (input === correctAnswer) {
+            feedback.textContent = "Correct!";
+            feedback.style.color = "green";
+            // Update the cell with the correct value
+            document.getElementById("input-3").value = correctAnswer;
+        } else {
+            feedback.textContent = "Wrong! The answer is " + correctAnswer;
+            feedback.style.color = "red";
+            // Display correct answer in the input field
+            document.getElementById("input-3").value = correctAnswer;
+        }
+    }
+</script>

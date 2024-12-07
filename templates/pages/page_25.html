@@ -1,118 +1,168 @@
 <style>
-    .arrow {
+    .pizza-container {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    #pizzaCanvas {
+        background-color: #fff;
         cursor: pointer;
-        font-weight: bold;
-        color: #007bff; /* Arrow color */
-        margin-left: 10px;
+        transition: transform 0.3s ease;
     }
 
-    .hidden-expression {
-        display: none;
-        font-style: italic;
-        margin-left: 15px;
-        color: green;
+    #pizzaCanvas:hover {
+        transform: scale(1.02);
     }
 
-    .expression-container {
-        margin-top: 5px !important;
-    }
+    .instructions {
+        margin-top: 15px;
+        color: #444;
+        font-size: 16px;
+    }    
 </style>
 
 <div class="flex flex-col items-center justify-center h-full">
 
+    <h1 class="text-lg font-bold text-center mb-8">
+        IV. Konsep Dasar SPLDV
+    </h1>
+
     <!-- Paragraph Content -->
     <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p class="font-bold">A. Aljabar </p>
         <p style="text-indent: 20px;">
-            Kalimat pertama kita tuliskan menjadi \(x+5\). Perhatikan bahwa kalimat pertama dapat diinterpretasikan pula \(5+x\), namun perlu dipilih salah satu untuk memperlihatkan kekonsistenan urutan yang dipakai dalam symbol dan kalimat. 
-            Saat ini kita belum melihat lebih jauh bahwa jika dibandingkan kedua bentuk simbolik memiliki hasil yang sama agar lebih fokus pengenalan variabel dan simbol matematika dalam suatu kalimat.
+            Variabel dalam aljabar mewakili besaran/kuantitas/bilangan yang belum diketahui. Sebagai contoh perhatikan cerita berikut:
         </p>
-        <p style="text-indent: 20px;">
-            Kalimat kedua dituliskan dalam simbol menjadi \(x-4\). Kalimat ketiga dituliskan menjadi \(2*x\). 
-            Bentuk \(2*x\) dapat dituliskan dengan cara lain yaitu \(2.x\) atau \(2x\). Perhatikan bahwa penulisan \(2x\) diinterpretasikan sebagai perkalian antara bilangan 2 dengan variabel \(x\). 
-            Akan tetapi kita juga dapat mengartikan penulisan \(2x\) sebagai suatu bilangan yang disusun dari 2 dan \(x\) dimana 2 menempati posisi puluhan dan \(x\) menempati posisi satuan dengan \(x\) juga mewakili bilangan yang belum diketahui. 
-            Untuk membedakan interpretasi ini kita perlu menyatakan bahwa \(2x\) adalah bilangan dua digit. Bentuk-bentuk simbolik dari 3 kalimat pertama ini yaitu:
+        <p>
+            <i>Dalam suatu keluarga yang terdiri dari Ayah, Ibu dan seorang anak laki-laki akan memesan pizza kecil . Satu pizza kecil terdapat 4 potong dengan ukuran sama. 
+            Jika setiap orang memakan paling sedikit 3 potong, berapa pizza kecil yang harus dipesan sehingga semuanya mendapatkan 3 potong. Dalam cerita ini ada besaran yang belum diketahui yaitu banyaknya pizza kecil. 
+            Banyak pizza dalam matematika dituliskan dalam bentuk symbol 1,2,3 dan seterusnya, namun karena belum diketahui maka banyaknya pizza ini diwakili oleh simbol yang sering dipakai yaitu \(x\).</i>
         </p>
-        <div class="expression-container">
-            1. Suatu bilangan ditambah lima. 
-            <span class="arrow" onclick="toggleExpression(1)">→</span>
-            <span id="expression-1" class="hidden-expression">x + 5</span>
-        </div>
-        
-        <div class="expression-container">
-            2. Suatu bilangan dikurangi empat. 
-            <span class="arrow" onclick="toggleExpression(2)">→</span>
-            <span id="expression-2" class="hidden-expression">x - 4</span>
-        </div>
-        
-        <div class="expression-container">
-            3. Suatu bilangan dikali dua. 
-            <span class="arrow" onclick="toggleExpression(3)">→</span>
-            <span id="expression-3" class="hidden-expression">2x</span>
-        </div>
-        <p style="text-indent: 20px;">
-            Bentuk-bentuk tersebut kita katakan sebagai <strong>ekspresi aljabar</strong> (yang melibatkan satu variabel).
-        </p>
-        <table class="border-collapse border border-slate-400 mx-auto">
-            <thead>
-                <tr>
-                    <th class="border border-slate-300 p-1">No</th>
-                    <th class="border border-slate-300 p-1">Kalimat</th>
-                    <th class="border border-slate-300 p-1">Ekspresi Aljabar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="border border-slate-300 p-1 text-center">1</td>
-                    <td class="border border-slate-300 p-1">Suatu bilangan ditambah lima</td>
-                    <td class="border border-slate-300 p-1 text-center">\(x+5\)</td>
-                </tr>
-                <tr>
-                    <td class="border border-slate-300 p-1 text-center">2</td>
-                    <td class="border border-slate-300 p-1">Suatu bilangan dikurangi empat</td>
-                    <td class="border border-slate-300 p-1 text-center">\(x-4\)</td>
-                </tr>
-                <tr>
-                    <td class="border border-slate-300 p-1 text-center">3</td>
-                    <td class="border border-slate-300 p-1">Suatu bilangan dikali dua</td>
-                    <td class="border border-slate-300 p-1 text-center">
-                        <div style="display: flex; align-items: center;">
-                            <input id="input-3" type="text" placeholder="?" class="p-1 border border-slate-300 w-12 text-center">
-                            <button onclick="checkAnswer()" class="ml-2 p-1 bg-blue-500 text-white rounded">Check</button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div id="feedback" class="mx-auto"></div>
     </div>
+
+    <div class="pizza-container">
+        <canvas id="pizzaCanvas" width="400" height="400"></canvas>
+        <p class="instructions">Klik pizza untuk melihat bagian-bagiannya!</p>
+    </div>
+      
 </div>
 
 <script>
-    function toggleExpression(num) {
-        const expression = document.getElementById(`expression-${num}`);
-        // Toggle the display between 'none' and 'inline'
-        if (expression.style.display === 'none' || expression.style.display === '') {
-            expression.style.display = 'inline';
-        } else {
-            expression.style.display = 'none';
+    const canvas = document.getElementById("pizzaCanvas");
+    const ctx = canvas.getContext("2d");
+    let isSliced = false;
+    let animationProgress = 0;
+    let animationId = null;
+
+    function drawPizza(progress = 1) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 160;
+
+        // Draw pizza base
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "#FFA500";
+        ctx.fill();
+
+        // Draw crust
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+        ctx.lineWidth = 15;
+        ctx.strokeStyle = "#D2691E";
+        ctx.stroke();
+
+        // Draw cheese texture
+        for (let i = 0; i < 30; i++) {
+            const angle = (Math.PI * 2 * i) / 30;
+            const x = centerX + Math.cos(angle) * (radius * 0.8);
+            const y = centerY + Math.sin(angle) * (radius * 0.8);
+            
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "#FFD700";
+            ctx.fill();
+        }
+
+        // Draw toppings in a spiral pattern
+        for (let i = 0; i < 25; i++) {
+            const angle = (i * 0.5);
+            const distance = 20 + (i * 6);
+            const x = centerX + Math.cos(angle) * distance;
+            const y = centerY + Math.sin(angle) * distance;
+
+            // Pepperoni
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = "#FF0000";
+            ctx.fill();
+
+            // Pepperoni shading
+            ctx.beginPath();
+            ctx.arc(x, y, 8, 0, Math.PI * 2);
+            ctx.fillStyle = "#8B0000";
+            ctx.fill();
+        }
+
+        if (isSliced) {
+            // Draw slice lines with animation
+            for (let i = 0; i < 4; i++) {
+            const sliceAngle = (i * Math.PI / 2) * progress;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(
+                centerX + Math.cos(sliceAngle) * radius,
+                centerY + Math.sin(sliceAngle) * radius
+            );
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "#FFFFFF";
+            ctx.stroke();
+
+            // Add labels with proper positioning
+            if (progress === 1) {
+                const labelDistance = radius * 0.7;
+                const labelAngle = (i * Math.PI / 2) + (Math.PI / 4);
+                const labelX = centerX + Math.cos(labelAngle) * labelDistance;
+                const labelY = centerY + Math.sin(labelAngle) * labelDistance;
+
+                ctx.save();
+                ctx.translate(labelX, labelY);
+                ctx.rotate(labelAngle + Math.PI/2);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = "bold 24px Arial";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("1/4", 0, 0);
+                ctx.restore();
+            }
+            }
         }
     }
 
-    function checkAnswer() {
-        const input = document.getElementById("input-3").value.trim();
-        const feedback = document.getElementById("feedback");
-        const correctAnswer = "2x";
-
-        if (input === correctAnswer) {
-            feedback.textContent = "Correct!";
-            feedback.style.color = "green";
-            // Update the cell with the correct value
-            document.getElementById("input-3").value = correctAnswer;
+    function animate() {
+        if (isSliced) {
+            animationProgress = Math.min(1, animationProgress + 0.05);
         } else {
-            feedback.textContent = "Wrong! The answer is " + correctAnswer;
-            feedback.style.color = "red";
-            // Display correct answer in the input field
-            document.getElementById("input-3").value = correctAnswer;
+            animationProgress = Math.max(0, animationProgress - 0.05);
+        }
+
+        drawPizza(animationProgress);
+
+        if (animationProgress > 0 && animationProgress < 1) {
+            animationId = requestAnimationFrame(animate);
         }
     }
+
+    canvas.addEventListener("click", function() {
+        isSliced = !isSliced;
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+        animate();
+    });
+
+    // Initial draw
+    drawPizza(0);
 </script>

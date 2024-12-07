@@ -5,42 +5,42 @@
 <div class="flex flex-row gap-8 p-8">
     <!-- Left column for images - 1/4 width -->
     <div class="w-1/4 space-y-6">
-        <figure class="flex flex-col items-center">
+        <figure class="flex flex-col items-center" style="margin-top: 50px;">
             <img 
-                src="{% static 'img/rene-descartes.jpg' %}" 
-                alt="Rene Descartes" 
+                src="{% static 'img/Rhind_Papyrus.jpg' %}" 
+                alt="Papirus Rhind" 
                 class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                onclick="showImageCard('image6')"
-                data-image-id="image6"
+                onclick="showImageCard('image1')"
+                data-image-id="image1"
             >
             <figcaption class="text-center text-xs mt-2 italic">
-                Rene Descartes
+                Papirus Rhind
             </figcaption>
         </figure>
 
-        <figure class="flex flex-col items-center" style="margin-top: 65px;">
+        <figure class="flex flex-col items-center" style="margin-top: 130px;">
             <img 
-                src="{% static 'img/pascal.png' %}" 
-                alt="Blaise Pascal" 
+                src="{% static 'img/euclid.jpg' %}" 
+                alt="Euclid" 
                 class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                onclick="showImageCard('image7')"
-                data-image-id="image7"
+                onclick="showImageCard('image2')"
+                data-image-id="image2"
             >
             <figcaption class="text-center text-xs mt-2 italic">
-                Blaise Pascal
+                Euclid
             </figcaption>
         </figure>
 
-        <figure class="flex flex-col items-center" style="margin-top: 65px;">
+        <figure class="flex flex-col items-center" style="margin-top: 50px;">
             <img 
-                src="{% static 'img/gauss.jpg' %}" 
-                alt="Carl Friedrich Gauss" 
+                src="{% static 'img/diophantus.jpg' %}" 
+                alt="Diophantus" 
                 class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                onclick="showImageCard('image8')"
-                data-image-id="image8"
+                onclick="showImageCard('image3')"
+                data-image-id="image3"
             >
             <figcaption class="text-center text-xs mt-2 italic">
-                Carl Friedrich Gauss
+                Diophantus
             </figcaption>
         </figure>
     </div>
@@ -48,27 +48,24 @@
     <!-- Right column for text - 3/4 width -->
     <div class="w-3/4 space-y-4">
         <p class="text-sm text-justify leading-relaxed">
-            <p class="font-bold">4) Eropa Abad Pertengahan dan Renaisans</p>
-            <p class="text-sm text-justify leading-relaxed">
-                <strong>a) René Descartes (1596–1650)</strong>: Dalam karyanya <i>La Géométrie</i>, Descartes memperkenalkan <strong>geometri analitik</strong>, yang memungkinkan persamaan linear dua variabel digambarkan dalam sistem koordinat kartesius. 
-                Ini adalah terobosan penting karena memungkinkan penyelesaian SPLDV dengan pendekatan grafis.
-            </p>
+            sederhana untuk menyelesaikan persamaan linear satu variabel. Mereka mengembangkan metode yang dikenal sebagai "<i>false position</i>" 
+            untuk memecahkan masalah berbasis persamaan linear. Dokumen ini mencatat beberapa masalah yang dapat diselesaikan dengan metode yang mirip dengan SPLDV, menunjukkan pemahaman awal tentang hubungan antara dua variabel.
         </p>
 
         <div class="space-y-4">
+            <p class="font-bold">2) Perkembangan di Yunani kuno</p>
             <p class="text-sm text-justify leading-relaxed">
-                <strong>b) Blaise Pascal (1623–1662)</strong>: Pascal, meskipun lebih dikenal dalam teori probabilitas, juga berkontribusi pada pengembangan aljabar dan geometri, termasuk analisis persamaan linear.
+                <strong>a) Euclid (300 SM)</strong>: Dalam <i>Elements</i>, Euclid memperkenalkan konsep geometri yang mendasari persamaan linear. 
+                Meskipun ia lebih fokus pada geometri, banyak teorema Euclid memberikan landasan untuk analisis garis lurus dan hubungan antara variabel, yang relevan dengan SPLDV.
             </p>
         </div>
 
         <div class="space-y-4">
-            <p class="font-bold">5) Era Modern: Penyelesaian Formal SPLDV</p>
             <p class="text-sm text-justify leading-relaxed">
-                <strong>a) Carl Friedrich Gauss (1777–1855)</strong>: Dikenal karena karyanya dalam aljabar, Gauss mengembangkan metode eliminasi yang masih digunakan dalam penyelesaian sistem persamaan hingga saat ini. Ia juga berkontribusi pada teori matriks. 
-                Gauss mengembangkan metode eliminasi yang sekarang dikenal sebagai <strong>Eliminasi Gauss</strong>, yang merupakan cara sistematis untuk menyelesaikan sistem persamaan linear, termasuk SPLDV. Metode ini sangat penting dalam aljabar linier dan diterapkan dalam komputasi modern. 
+                <strong>b) Diophantus (Sekitar 250 SM)</strong>: Diophantus dikenal sebagai "Bapak Aljabar" dan menulis <i>Arithmetica</i>, yang membahas penyelesaian persamaan linear dan kuadrat. 
+                Meskipun Diophantus terutama bekerja dengan bilangan bulat, ia memberikan kontribusi signifikan terhadap pengembangan persamaan linear. Karyanya memberikan fondasi penting untuk pengembangan aljabar dan SPLDV
             </p>
         </div>
-
     </div>
 </div>
 

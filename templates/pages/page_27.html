@@ -1,87 +1,118 @@
 <style>
-    /* Any custom animations we need */
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+    .arrow {
+        cursor: pointer;
+        font-weight: bold;
+        color: #007bff; /* Arrow color */
+        margin-left: 10px;
+    }
+
+    .hidden-expression {
+        display: none;
+        font-style: italic;
+        margin-left: 15px;
+        color: green;
+    }
+
+    .expression-container {
+        margin-top: 5px !important;
     }
 </style>
 
 <div class="flex flex-col items-center justify-center h-full">
-    <!-- Equation Card -->
-    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-lg">
-        <!-- Equation Container -->
-        <div 
-            id="equation" 
-            class="text-4xl text-center mb-8 cursor-pointer select-none"
-            onclick="toggleHighlight()"
-        >
-            <span id="leftSide" class="px-3 py-1 transition-colors duration-300 rounded">x+6</span>
-            <span id="equals" class="px-3 py-1 transition-colors duration-300 rounded">=</span>
-            <span id="rightSide" class="px-3 py-1 transition-colors duration-300 rounded">7</span>
-        </div>
 
-        <!-- Explanation Box -->
-        <div id="explanation" class="hidden">
-            <div class="space-y-4">
-                <!-- Legend -->
-                <div class="flex flex-col sm:flex-row justify-center gap-4 text-sm">
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-blue-200 rounded"></div>
-                        <span>Ruas Kiri</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-green-200 rounded"></div>
-                        <span>Sama Dengan</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-4 h-4 bg-yellow-200 rounded"></div>
-                        <span>Ruas Kanan</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Instructions -->
-        <p class="text-gray-600 text-sm text-center mt-6">
-            Klik persamaan untuk melihat penjelasan
-        </p>
-    </div>
+    <!-- Paragraph Content -->
     <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
-        <p style="text-indent: 20px; margin-top: 15px;">
-            Dalam logika matematika persamaan yang memuat ekspresi aljabar merupakan pernyataan yang belum diketahui nilai kebenarannya dan disebut kalimat terbuka. 
-            Problem dalam suatu persamaan adalah mencari bilangan/nilai/besaran untuk menggantikan posisi variabel dalam persamaan sehingga persamaan tersebut menjadi pernyataan yang bernilai benar. 
-            Sebagai contoh dalam persamaan \(x+6=7\) apabila \(x\) kita ganti dengan bilangan 1 maka persamaannya berubah menjadi \(1+6=7\) yang merupakan kalimat/pernyataan yang bernilai benar. 
-            Jadi dalam kasus ini jawaban dari persamaan \(x+6=7\) adalah 1.
+        <p style="text-indent: 20px;">
+            Kalimat pertama kita tuliskan menjadi \(x+5\). Perhatikan bahwa kalimat pertama dapat diinterpretasikan pula \(5+x\), namun perlu dipilih salah satu untuk memperlihatkan kekonsistenan urutan yang dipakai dalam symbol dan kalimat. 
+            Saat ini kita belum melihat lebih jauh bahwa jika dibandingkan kedua bentuk simbolik memiliki hasil yang sama agar lebih fokus pengenalan variabel dan simbol matematika dalam suatu kalimat.
         </p>
         <p style="text-indent: 20px;">
-            Dengan kata lain nilai yang dicari untuk menggantikan variabel \(x\) dalam persamaan tersebut adalah 1. Dalam bentuk simbolik kita tulis \(x=1\). 
-            Perhatikan bahwa secara terpisah  juga merupakan suatu persamaan. Kita ketahui bahwa pertukaran dua ruas dari persamaan tidak mengubah makna/problem dari persamaan. 
-            Sebagai contoh persamaan \(x+6=7\) dapat ditulis menjadi \(7=x+6\) dan memiliki jawaban yang sama.
+            Kalimat kedua dituliskan dalam simbol menjadi \(x-4\). Kalimat ketiga dituliskan menjadi \(2*x\). 
+            Bentuk \(2*x\) dapat dituliskan dengan cara lain yaitu \(2.x\) atau \(2x\). Perhatikan bahwa penulisan \(2x\) diinterpretasikan sebagai perkalian antara bilangan 2 dengan variabel \(x\). 
+            Akan tetapi kita juga dapat mengartikan penulisan \(2x\) sebagai suatu bilangan yang disusun dari 2 dan \(x\) dimana 2 menempati posisi puluhan dan \(x\) menempati posisi satuan dengan \(x\) juga mewakili bilangan yang belum diketahui. 
+            Untuk membedakan interpretasi ini kita perlu menyatakan bahwa \(2x\) adalah bilangan dua digit. Bentuk-bentuk simbolik dari 3 kalimat pertama ini yaitu:
         </p>
+        <div class="expression-container">
+            1. Suatu bilangan ditambah lima. 
+            <span class="arrow" onclick="toggleExpression(1)">→</span>
+            <span id="expression-1" class="hidden-expression">x + 5</span>
+        </div>
+        
+        <div class="expression-container">
+            2. Suatu bilangan dikurangi empat. 
+            <span class="arrow" onclick="toggleExpression(2)">→</span>
+            <span id="expression-2" class="hidden-expression">x - 4</span>
+        </div>
+        
+        <div class="expression-container">
+            3. Suatu bilangan dikali dua. 
+            <span class="arrow" onclick="toggleExpression(3)">→</span>
+            <span id="expression-3" class="hidden-expression">2x</span>
+        </div>
+        <p style="text-indent: 20px;">
+            Bentuk-bentuk tersebut kita katakan sebagai <strong>ekspresi aljabar</strong> (yang melibatkan satu variabel).
+        </p>
+        <table class="border-collapse border border-slate-400 mx-auto">
+            <thead>
+                <tr>
+                    <th class="border border-slate-300 p-1">No</th>
+                    <th class="border border-slate-300 p-1">Kalimat</th>
+                    <th class="border border-slate-300 p-1">Ekspresi Aljabar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">1</td>
+                    <td class="border border-slate-300 p-1">Suatu bilangan ditambah lima</td>
+                    <td class="border border-slate-300 p-1 text-center">\(x+5\)</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">2</td>
+                    <td class="border border-slate-300 p-1">Suatu bilangan dikurangi empat</td>
+                    <td class="border border-slate-300 p-1 text-center">\(x-4\)</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">3</td>
+                    <td class="border border-slate-300 p-1">Suatu bilangan dikali dua</td>
+                    <td class="border border-slate-300 p-1 text-center">
+                        <div style="display: flex; align-items: center;">
+                            <input id="input-3" type="text" placeholder="?" class="p-1 border border-slate-300 w-12 text-center">
+                            <button onclick="checkAnswer()" class="ml-2 p-1 bg-blue-500 text-white rounded">Check</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="feedback" class="mx-auto"></div>
     </div>
 </div>
 
 <script>
-    let isHighlighted = false;
-    const leftSide = document.getElementById('leftSide');
-    const equals = document.getElementById('equals');
-    const rightSide = document.getElementById('rightSide');
-    const explanation = document.getElementById('explanation');
-
-    function toggleHighlight() {
-        isHighlighted = !isHighlighted;
-        
-        if (isHighlighted) {
-            leftSide.classList.add('bg-blue-200');
-            equals.classList.add('bg-green-200');
-            rightSide.classList.add('bg-yellow-200');
-            explanation.classList.remove('hidden');
-            explanation.style.animation = 'fadeIn 0.3s ease-in-out';
+    function toggleExpression(num) {
+        const expression = document.getElementById(`expression-${num}`);
+        // Toggle the display between 'none' and 'inline'
+        if (expression.style.display === 'none' || expression.style.display === '') {
+            expression.style.display = 'inline';
         } else {
-            leftSide.classList.remove('bg-blue-200');
-            equals.classList.remove('bg-green-200');
-            rightSide.classList.remove('bg-yellow-200');
-            explanation.classList.add('hidden');
+            expression.style.display = 'none';
+        }
+    }
+
+    function checkAnswer() {
+        const input = document.getElementById("input-3").value.trim();
+        const feedback = document.getElementById("feedback");
+        const correctAnswer = "2x";
+
+        if (input === correctAnswer) {
+            feedback.textContent = "Correct!";
+            feedback.style.color = "green";
+            // Update the cell with the correct value
+            document.getElementById("input-3").value = correctAnswer;
+        } else {
+            feedback.textContent = "Wrong! The answer is " + correctAnswer;
+            feedback.style.color = "red";
+            // Display correct answer in the input field
+            document.getElementById("input-3").value = correctAnswer;
         }
     }
 </script>

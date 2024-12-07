@@ -1,21 +1,40 @@
-<div class="flex flex-col items-center justify-center h-full">
+{% load static %}
 
-    <!-- Paragraph Content -->
-    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
-        <p class="font-bold">1. Metode Grafis (Sekitar 2000 SM)</p>
-        <p style="text-indent: 20px;">
-            Metode grafis merupakan salah satu cara paling awal untuk menyelesaikan sistem persamaan. Penggunaan representasi grafis dapat ditelusuri kembali ke peradaban kuno, seperti Mesir dan Babilonia, 
-            di mana orang-orang telah menggunakan metode visual untuk menyelesaikan masalah pengukuran dan distribusi. Pada masa itu, manusia menggunakan garis untuk menggambarkan hubungan antara dua variabel, 
-            seperti panjang dan lebar, atau jumlah dan harga, meskipun belum ada formalitas matematis yang jelas. <strong>Kelebihan</strong>: Metode ini memberikan gambaran visual yang jelas tentang hubungan antara variabel dan solusi. 
-            <strong>Kekurangan</strong>: Ketepatan penyelesaian bergantung pada akurasi gambar, dan sulit diterapkan untuk sistem persamaan dengan lebih dari dua variabel.
+{% include "include/image_style.html" %}
+
+<div class="flex flex-row gap-8 p-8">
+    <!-- Left column for images - 1/4 width -->
+    <div class="w-1/4 space-y-6">
+        <figure class="flex flex-col items-center" style="margin-top 150px;">
+            <img 
+                src="{% static 'img/hamilton.jpg' %}" 
+                alt="William Rowan Hamilton" 
+                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
+                onclick="showImageCard('image9')"
+                data-image-id="image9"
+            >
+            <figcaption class="text-center text-xs mt-2 italic">
+                William Rowan Hamilton
+            </figcaption>
+        </figure>
+    </div>
+
+    <!-- Right column for text - 3/4 width -->
+    <div class="w-3/4 space-y-4">
+        <p class="text-sm text-justify leading-relaxed">
+            <p class="text-sm text-justify leading-relaxed">
+                <strong>b) William Rowan Hamilton (1805–1865)</strong>: Hamilton seorang matematikawan Irlandia mengembangkan notasi matriks yang berperan besar dalam menyelesaikan sistem persamaan linear, termasuk SPLDV, melalui representasi matriks. 
+            </p>
         </p>
-        <p class="font-bold">2. Metode Substitusi (Abad ke-3 M)</p>
-        <p style="text-indent: 20px;">
-            Metode substitusi mulai berkembang seiring dengan kemajuan dalam aljabar, terutama dalam karya Diophantus (abad ke-3 M). 
-            Dalam karya-karya ini, pengenalan simbol dan notasi yang lebih sistematis memungkinkan matematikawan untuk melakukan manipulasi aljabar yang lebih kompleks. 
-            Metode ini menjadi populer karena mudah dipahami dan sering digunakan oleh matematikawan untuk menyelesaikan masalah yang berkaitan dengan bilangan bulat. 
-            <strong>Kelebihan</strong>: Metode ini mudah dipahami dan cocok untuk sistem dengan dua atau lebih variabel.
-            <strong>Kekurangan</strong>: Mungkin tidak efisien untuk sistem yang lebih besar atau kompleks.
-        </p>
+
+        <div class="space-y-4">
+            <p class="text-sm text-justify leading-relaxed">
+                Konsep persamaan linear telah ada sejak zaman kuno, dengan catatan penggunaan aritmetika di Mesir dan Babilonia. 
+                Namun, pengembangan formal dari sistem persamaan muncul lebih jelas di peradaban Yunani kuno dengan matematikawan seperti <strong>Euclid</strong> yang menyelidiki sifat-sifat angka dan hubungan antara angka.
+            </p>
+        </div>
+
     </div>
 </div>
+
+{% include "include/image_js.html" %}

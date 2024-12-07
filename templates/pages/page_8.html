@@ -1,72 +1,22 @@
-{% load static %}
+<div class="flex flex-col items-center justify-center h-full">
 
-{% include "include/image_style.html" %}
-
-<div class="flex flex-row gap-8 p-8">
-    <!-- Left column for images - 1/4 width -->
-    <div class="w-1/4 space-y-6">
-        <figure class="flex flex-col items-center" style="margin-top: 50px;">
-            <img 
-                src="{% static 'img/Rhind_Papyrus.jpg' %}" 
-                alt="Papirus Rhind" 
-                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                onclick="showImageCard('image1')"
-                data-image-id="image1"
-            >
-            <figcaption class="text-center text-xs mt-2 italic">
-                Papirus Rhind
-            </figcaption>
-        </figure>
-
-        <figure class="flex flex-col items-center" style="margin-top: 130px;">
-            <img 
-                src="{% static 'img/euclid.jpg' %}" 
-                alt="Euclid" 
-                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                onclick="showImageCard('image2')"
-                data-image-id="image2"
-            >
-            <figcaption class="text-center text-xs mt-2 italic">
-                Euclid
-            </figcaption>
-        </figure>
-
-        <figure class="flex flex-col items-center" style="margin-top: 50px;">
-            <img 
-                src="{% static 'img/diophantus.jpg' %}" 
-                alt="Diophantus" 
-                class="w-full h-auto rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
-                onclick="showImageCard('image3')"
-                data-image-id="image3"
-            >
-            <figcaption class="text-center text-xs mt-2 italic">
-                Diophantus
-            </figcaption>
-        </figure>
-    </div>
-
-    <!-- Right column for text - 3/4 width -->
-    <div class="w-3/4 space-y-4">
-        <p class="text-sm text-justify leading-relaxed">
-            sederhana untuk menyelesaikan persamaan linear satu variabel. Mereka mengembangkan metode yang dikenal sebagai "<i>false position</i>" 
-            untuk memecahkan masalah berbasis persamaan linear. Dokumen ini mencatat beberapa masalah yang dapat diselesaikan dengan metode yang mirip dengan SPLDV, menunjukkan pemahaman awal tentang hubungan antara dua variabel.
+    <!-- Paragraph Content -->
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p class="font-bold">C. Deskripsi Umum SPLDV</p>
+        <p style="text-indent: 20px;">
+            SPLDV adalah kumpulan dari dua persamaan linear yang melibatkan dua variabel. Bentuk umum dari SPLDV dapat ditulis sebagai berikut:
         </p>
-
-        <div class="space-y-4">
-            <p class="font-bold">2) Perkembangan di Yunani kuno</p>
-            <p class="text-sm text-justify leading-relaxed">
-                <strong>a) Euclid (300 SM)</strong>: Dalam <i>Elements</i>, Euclid memperkenalkan konsep geometri yang mendasari persamaan linear. 
-                Meskipun ia lebih fokus pada geometri, banyak teorema Euclid memberikan landasan untuk analisis garis lurus dan hubungan antara variabel, yang relevan dengan SPLDV.
-            </p>
-        </div>
-
-        <div class="space-y-4">
-            <p class="text-sm text-justify leading-relaxed">
-                <strong>b) Diophantus (Sekitar 250 SM)</strong>: Diophantus dikenal sebagai "Bapak Aljabar" dan menulis <i>Arithmetica</i>, yang membahas penyelesaian persamaan linear dan kuadrat. 
-                Meskipun Diophantus terutama bekerja dengan bilangan bulat, ia memberikan kontribusi signifikan terhadap pengembangan persamaan linear. Karyanya memberikan fondasi penting untuk pengembangan aljabar dan SPLDV
-            </p>
-        </div>
+        <p class="text-center justify-center">
+            Persamaan 1 : \( a_{1}x_{1}+b_{1}y_{1} = c_{1}\)
+        </p>
+        <p class="text-center justify-center">
+            Persamaan 2 : \( a_{2}x_{2}+b_{2}y_{2} = c_{2}\)
+        </p>
+        <p style="text-indent: 20px;">
+            Dimana \(x\) dan \(y\) adalah variabel yang ingin kita cari, sementara \(a_{1}\), \(b_{1}\), \(c_{1}\), \(a_{2}\), \(b_{2}\), dan \(c_{2}\)
+            adalah koefisien yang merupakan bilangan real. Tujuan dari SPLDV adalah untuk menemukan nilai \(x\) dan \(y\) yang memenuhi kedua persamaan tersebut secara simultan.
+            Dalam e-modul ini, kita akan mengeksplorasi lebih dalam tentang SPLDV, dari sejarahnya, metode penyelesaian, hingga aplikasinya dalam kehidupan sehari-hari.
+            Melalui pendekatan yang terstruktur dan interaktif, diharapkan pembaca dapat memahami SPLDV dengan lebih baik dan dapat menerapkannya dalam konteks yang relevan.
+        </p>
     </div>
 </div>
-
-{% include "include/image_js.html" %}

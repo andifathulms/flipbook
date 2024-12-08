@@ -1,0 +1,204 @@
+<style>
+    .hidden {
+        display: none;
+    }
+    
+    .popup-page-33 {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        z-index: 1000;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        max-width: 90%;
+        text-align: center;
+    }
+    
+    .popup-page-33 p {
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+    
+    .popup-page-33 .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .popup-page-33 button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        flex: 1 1 auto;
+        max-width: 120px;
+    }
+    
+    .popup-page-33 button:hover {
+        background-color: #0056b3;
+    }
+    
+    .correct {
+        color: green;
+        font-weight: bold;
+    }
+    
+    .incorrect {
+        color: red;
+        font-weight: bold;
+    }
+    
+    .btn-popup {
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    
+    .btn-popup:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+
+<div class="flex flex-col items-center justify-center h-full">
+
+    <!-- Paragraph Content -->
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <table id="table-33" class="border-collapse border border-slate-400 mx-auto">
+            <thead>
+                <tr>
+                    <th class="border border-slate-300 p-1 text-center">No</th>
+                    <th class="border border-slate-300 p-1 text-center">Jenis Bentuk Persamaan/Kesamaan</th>
+                    <th class="border border-slate-300 p-1 text-center">Contoh</th>
+                    <th class="border border-slate-300 p-1 text-center">Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">1</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 1 dengan konstanta</td>
+                    <td class="border border-slate-300 p-1 text-center">\(2x=5\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Persamaan</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">2</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 2 dengan konstanta</td>
+                    <td class="border border-slate-300 p-1 text-center">\(2x+4=5\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Persamaan</td>
+                </tr>
+                <tr data-row="3">
+                    <td class="border border-slate-300 p-1 text-center">3</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 3 dengan konstanta</td>
+                    <td class="border border-slate-300 p-1 text-center">\(2x+3x=14\)</td>
+                    <td class="border border-slate-300 p-1 text-center">
+                        <button class="btn-popup" onclick="showPopup(3)">Pilih</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">4</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 1 dengan Bentuk 1</td>
+                    <td class="border border-slate-300 p-1 text-center">\(8x=9x\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Kesamaan</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">5</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 1 dengan Bentuk 2</td>
+                    <td class="border border-slate-300 p-1 text-center">\(7x=8x+2\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Persamaan</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">6</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 1 dengan Bentuk 3</td>
+                    <td class="border border-slate-300 p-1 text-center">\(4x=3x+5x\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Kesamaan</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">7</td>
+                    <td class="border border-slate-300 p-1 text-center" rowspan="3">Bentuk 2 dengan Bentuk 2</td>
+                    <td class="border border-slate-300 p-1 text-center">\(5x+6=4x+8\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Persamaan</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">8</td>
+                    <td class="border border-slate-300 p-1 text-center">\(5x+6=5x+6\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Kesamaan bernilai benar</td>
+                </tr>
+                <tr data-row="9">
+                    <td class="border border-slate-300 p-1 text-center">9</td>
+                    <td class="border border-slate-300 p-1 text-center">\(5x+6=5x+7\)</td>
+                    <td class="border border-slate-300 p-1 text-center">
+                        <button class="btn-popup" onclick="showPopup(9)">Pilih</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">10</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 2 dengan Bentuk 3</td>
+                    <td class="border border-slate-300 p-1 text-center">\(4x+(-9)=5x+10x\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Persamaan</td>
+                </tr>
+                <tr>
+                    <td class="border border-slate-300 p-1 text-center">11</td>
+                    <td class="border border-slate-300 p-1 text-center">Bentuk 3 dengan Bentuk 3</td>
+                    <td class="border border-slate-300 p-1 text-center">\(2x+5x=(-5)x+10\)</td>
+                    <td class="border border-slate-300 p-1 text-center">Kesamaan</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="popup-3" class="popup-page-33 hidden">
+    <p>Pilih jawaban yang benar:</p>
+    <div class="button-container">
+        <button onclick="selectAnswer(3, 'Persamaan')">Persamaan</button>
+        <button onclick="selectAnswer(3, 'Kesamaan bernilai benar')">Kesamaan bernilai benar</button>
+        <button onclick="selectAnswer(3, 'Kesamaan bernilai salah')">Kesamaan bernilai salah</button>
+    </div>
+</div>
+
+<div id="popup-9" class="popup-page-33 hidden">
+    <p>Pilih jawaban yang benar:</p>
+    <div class="button-container">
+        <button onclick="selectAnswer(9, 'Kesamaan bernilai benar')">Kesamaan bernilai benar</button>
+        <button onclick="selectAnswer(9, 'Kesamaan bernilai salah')">Kesamaan bernilai salah</button>
+    </div>
+</div>
+
+<script>
+    function showPopup(rowId) {
+        console.log(rowId)
+        const popup = document.querySelector(`#popup-${rowId}`);
+        popup.classList.remove('hidden');
+        console.log(popup)
+    }
+
+    function selectAnswer(rowId, choice) {
+        const correctAnswers = {
+            3: 'Persamaan',
+            9: 'Kesamaan bernilai salah',
+        };
+
+        const popup = document.querySelector(`#popup-${rowId}`);
+        const cell = document.querySelector(`#table-33 tr[data-row="${rowId}"] td:last-child`);
+
+        if (choice === correctAnswers[rowId]) {
+            popup.classList.add('hidden');
+            cell.innerHTML = `<span class="correct">${choice}</span>`;
+        } else {
+            alert('Jawaban salah! Silakan coba lagi.');
+            showPopup(rowId);
+        }
+    }       
+</script>

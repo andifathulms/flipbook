@@ -94,23 +94,23 @@
             Dengan kata lain, <i>kesamaan</i> dapat menjadi <i>kalimat tertutup</i> jika kebenarannya telah dipastikan, sementara <i>persamaan</i> tetap menjadi <i>kalimat terbuka</i> hingga variabel-variabel di dalamnya digantikan oleh nilai tertentu. 
         </p>
         <p style="text-indent: 20px;">
-            Bisakah kamu menentukan apakah \(2x+5x=7x\) merupakan <span class="clickable" onclick="selectAnswer('persamaan')">persamaan</span> atau <span class="clickable" onclick="selectAnswer('kesamaan')">kesamaan</span>? 
+            Bisakah kamu menentukan apakah \(2x+5x=7x\) merupakan <span class="clickable" onclick="selectAnswer29('persamaan')">persamaan</span> atau <span class="clickable" onclick="selectAnswer29('kesamaan')">kesamaan</span>? 
         </p>
         <p id="feedback-29" class="text-center mt-4 text-lg answer hidden"></p>
     </div>
 </div>
 
 <script>
-    let isHighlightedPage33 = false;
+    let isHighlightedPage29 = false;
     const leftSide = document.getElementById('leftSide');
     const equals = document.getElementById('equals');
     const rightSide = document.getElementById('rightSide');
     const explanation = document.getElementById('explanation');
 
     function toggleHighlight() {
-        isHighlightedPage33 = !isHighlightedPage33;
+        isHighlightedPage29 = !isHighlightedPage29;
         
-        if (isHighlightedPage33) {
+        if (isHighlightedPage29) {
             leftSide.classList.add('bg-blue-200');
             equals.classList.add('bg-green-200');
             rightSide.classList.add('bg-yellow-200');
@@ -124,14 +124,10 @@
         }
     }
 
-    function selectAnswer(choice) {
-        console.log("enter")
+    function selectAnswer29(choice) {
         const feedback = document.getElementById('feedback-29');
         feedback.classList.remove('hidden');
-        console.log(feedback)
-        console.log(choice)
         if (choice === 'kesamaan') {
-            console.log('kesamaan')
             feedback.innerHTML = 'Benar! Jawabannya adalah <span class="correct">kesamaan</span>.';
         } else {
             feedback.innerHTML = 'Salah! Jawabannya adalah <span class="correct">kesamaan</span>, bukan <span class="incorrect">persamaan</span>.';

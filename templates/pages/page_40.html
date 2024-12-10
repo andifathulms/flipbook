@@ -1,5 +1,17 @@
-<div class="flex flex-col items-center justify-center h-full">
+<style>
+    #graphCanvas40 {
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+</style>
+
+<div class="flex flex-col items-center justify-center h-full">
     <!-- Paragraph Content -->
     <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
         <p>
@@ -7,4 +19,146 @@
             Dengan melakukan substitusi, kita bisa menemukan nilai \(y\) untuk beberapa nilai \(x\) atau sebaliknya.
         </p>
     </div>
+
+    <!-- Graph Animation -->
+    <div class="w-full flex flex-col items-center mt-6">
+        <canvas id="graphCanvas40" width="400" height="400"></canvas>
+        <div class="flex space-x-4 mt-4">
+            <button id="startButton" class="px-4 py-2 bg-blue-500 text-white rounded shadow">Start Animation</button>
+            <button id="resetButton40" class="px-4 py-2 bg-blue-500 text-white rounded shadow">Reset</button>
+        </div>
+    </div>
+
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p style="margin-top: 10px;">
+            2. <strong>Menentukan Titik-titik pada Grafik</strong>: Mari kita ambil sistem persamaan berikut sebagai contoh:
+        </p>
+        <p>Persamaan 1 : \(2x+3y=12\) dan \(x-4y=-2\)</p>
+        <p>Persamaan 2 : \(2x+3y=12\) dan \(4x+6y=24\)</p>
+    </div>
 </div>
+
+<script>
+    const canvas40 = document.getElementById('graphCanvas40');
+    const ctx40 = canvas40.getContext('2d');
+    const startButton = document.getElementById('startButton');
+    const resetButton40 = document.getElementById('resetButton40');
+
+    const width = canvas40.width;
+    const height = canvas40.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const scale = 20; // Scale for the graph (1 unit = 20px)
+
+    let progress = 0; // Progress of the line drawing
+    const slope = 1; // m (Slope)
+    const intercept = 2; // b (y-intercept)
+    let animationId40 = null;
+
+    function drawAxes() {
+        ctx40.clearRect(0, 0, width, height);
+
+        // Draw X and Y axes
+        ctx40.strokeStyle = '#333';
+        ctx40.lineWidth = 1;
+
+        // X-axis
+        ctx40.beginPath();
+        ctx40.moveTo(0, centerY);
+        ctx40.lineTo(width, centerY);
+        ctx40.stroke();
+
+        // Y-axis
+        ctx40.beginPath();
+        ctx40.moveTo(centerX, 0);
+        ctx40.lineTo(centerX, height);
+        ctx40.stroke();
+
+        // Add ticks and labels
+        for (let i = -10; i <= 10; i++) {
+            const x = centerX + i * scale;
+            const y = centerY - i * scale;
+
+            // X-axis ticks
+            ctx40.beginPath();
+            ctx40.moveTo(x, centerY - 5);
+            ctx40.lineTo(x, centerY + 5);
+            ctx40.stroke();
+
+            // Y-axis ticks
+            ctx40.beginPath();
+            ctx40.moveTo(centerX - 5, y);
+            ctx40.lineTo(centerX + 5, y);
+            ctx40.stroke();
+        }
+
+        // Axis labels
+        ctx40.fillStyle = '#333';
+        ctx40.font = '14px Arial';
+        ctx40.fillText('X', width - 20, centerY - 10);
+        ctx40.fillText('Y', centerX + 10, 20);
+    }
+
+    function drawLine() {
+        drawAxes();
+
+        // Draw the animated line
+        ctx40.strokeStyle = '#007BFF';
+        ctx40.lineWidth = 2;
+
+        ctx40.beginPath();
+        for (let x = -progress; x <= progress; x++) {
+            const y = slope * x + intercept;
+            const canvasX = centerX + x * scale;
+            const canvasY = centerY - y * scale;
+
+            if (x === -progress) {
+                ctx40.moveTo(canvasX, canvasY);
+            } else {
+                ctx40.lineTo(canvasX, canvasY);
+            }
+        }
+        ctx40.stroke();
+
+        // Show slope and intercept
+        if (progress > 0) {
+            ctx40.fillStyle = '#333';
+            ctx40.font = '12px Arial';
+
+            // Label for slope
+            ctx40.fillText(`Slope (m) = ${slope}`, centerX + 50, centerY - 30);
+
+            // Label for intercept
+            const interceptY = centerY - intercept * scale;
+            ctx40.fillText('Intercept (b)', centerX + 10, interceptY - 10);
+        }
+
+        // Increment progress
+        progress += 0.1;
+        if (progress <= 10) {
+            animationId40 = requestAnimationFrame(drawLine);
+        }
+    }
+
+    function resetGraph() {
+        if (animationId40) {
+            cancelAnimationFrame(animationId40);
+            animationId40 = null;
+        }
+        progress = 0;
+        drawAxes();
+    }
+
+    // Event listeners for buttons
+    startButton.addEventListener('click', function () {
+        resetGraph();
+        drawLine();
+    });
+
+    resetButton40.addEventListener('click', resetGraph);
+
+    // Initial draw
+    drawAxes();
+
+</script>
+

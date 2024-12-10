@@ -1,0 +1,157 @@
+<style>
+    #graphCanvas41 {
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="flex flex-col items-center justify-center h-full">
+    <!-- Paragraph Content -->
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p>Persamaan 3 : \(2x+3y=12\) dan \(2x+3y=6\)</p>
+    </div>
+
+    <div class="w-full flex flex-col items-center mt-6">
+        <canvas id="graphCanvas41" width="400" height="400"></canvas>
+        <div class="flex space-x-4 mt-4">
+            <button id="equation41_1" class="px-4 py-2 bg-blue-500 text-white rounded shadow">Persamaan 1</button>
+            <button id="equation41_2" class="px-4 py-2 bg-blue-500 text-white rounded shadow">Persamaan 2</button>
+            <button id="equation41_3" class="px-4 py-2 bg-blue-500 text-white rounded shadow">Persamaan 3</button>
+        </div>
+    </div>
+
+    <div class="text-sm text-justify leading-relaxed mx-8 space-y-4">
+        <p style="margin-top: 10px;">
+            Gunakan grafik animasi di atas untuk menjawab pertanyaan berikut:
+        </p>
+        <p>Persamaan 1 : </p>
+        <p>Persamaan 2 : </p>
+        <p>Persamaan 3 : </p>
+    </div>
+</div>
+
+<script>
+    const canvas41 = document.getElementById('graphCanvas41');
+    const ctx41 = canvas41.getContext('2d');
+
+    const width41 = canvas41.width;
+    const height41 = canvas41.height;
+    const centerX41 = width41 / 2;
+    const centerY41 = height / 2;
+    const scale41 = 20;
+
+    // Equations represented as slope-intercept form (y = mx + b)
+    const equations = {
+        equation1: [
+            { m: -2 / 3, b: 4 }, // 2x + 3y = 12
+            { m: 1 / 4, b: -0.5 }, // x - 4y = -2
+        ],
+        equation2: [
+            { m: -2 / 3, b: 4 }, // 2x + 3y = 12
+            { m: -2 / 3, b: 4 }, // 4x + 6y = 24
+        ],
+        equation3: [
+            { m: -2 / 3, b: 4 }, // 2x + 3y = 12
+            { m: -2 / 3, b: 2 }, // 2x + 3y = 6
+        ],
+    };
+
+    function drawAxes() {
+        ctx41.clearRect(0, 0, width41, height41);
+
+        // Draw X and Y axes
+        ctx41.strokeStyle = '#333';
+        ctx41.lineWidth = 1;
+
+        // X-axis
+        ctx41.beginPath();
+        ctx41.moveTo(0, centerY41);
+        ctx41.lineTo(width41, centerY41);
+        ctx41.stroke();
+
+        // Y-axis
+        ctx41.beginPath();
+        ctx41.moveTo(centerX41, 0);
+        ctx41.lineTo(centerX41, height41);
+        ctx41.stroke();
+
+        // Add ticks and labels
+        for (let i = -10; i <= 10; i++) {
+            const x = centerX41 + i * scale41;
+            const y = centerY41 - i * scale41;
+
+            // X-axis ticks
+            ctx41.beginPath();
+            ctx41.moveTo(x, centerY41 - 5);
+            ctx41.lineTo(x, centerY41 + 5);
+            ctx41.stroke();
+
+            // Y-axis ticks
+            ctx41.beginPath();
+            ctx41.moveTo(centerX41 - 5, y);
+            ctx41.lineTo(centerX41 + 5, y);
+            ctx41.stroke();
+        }
+
+        // Axis labels
+        ctx41.fillStyle = '#333';
+        ctx41.font = '14px Arial';
+        ctx41.fillText('X', width41 - 20, centerY41 - 10);
+        ctx41.fillText('Y', centerX41 + 10, 20);
+    }
+
+    function plotLine(m, b, color = '#007BFF') {
+        ctx41.strokeStyle = color;
+        ctx41.lineWidth = 2;
+    
+        ctx41.beginPath();
+        let started = false;
+    
+        for (let x = -10; x <= 10; x += 0.1) {
+            const y = m * x + b; // Equation of the line
+            const canvasX = centerX41 + x * scale41;
+            const canvasY = centerY41 - y * scale41;
+    
+            // Only plot points that fit within the canvas
+            if (canvasX >= 0 && canvasX <= width41 && canvasY >= 0 && canvasY <= height41) {
+                if (!started) {
+                    ctx41.moveTo(canvasX, canvasY);
+                    started = true;
+                } else {
+                    ctx41.lineTo(canvasX, canvasY);
+                }
+            }
+        }
+    
+        ctx41.stroke();
+    }
+    
+
+    function plotEquations(equationKey) {
+        drawAxes();
+        const selectedEquations = equations[equationKey];
+        const colors = ['#007BFF', '#FF4500'];
+
+        selectedEquations.forEach((eq, index) => {
+            plotLine(eq.m, eq.b, colors[index]);
+        });
+    }
+
+    // Event listeners for buttons
+    document.getElementById('equation41_1').addEventListener('click', () => {
+        plotEquations('equation1');
+    });
+
+    document.getElementById('equation41_2').addEventListener('click', () => {
+        plotEquations('equation2');
+    });
+
+    document.getElementById('equation41_3').addEventListener('click', () => {
+        plotEquations('equation3');
+    });
+
+    // Initial draw (empty axes)
+    drawAxes();
+
+</script>

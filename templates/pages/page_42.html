@@ -1,0 +1,169 @@
+<div class="w-full flex flex-col items-center mt-6">
+
+    <div class="flex flex-col space-y-4 mt-4 w-full max-w-md">
+        <p style="text-indent: 20px;">Tentukan persamaan lain yang memiliki 3 kondisi seperti di atas.</p>
+        <p class="text-center justify-center">
+            \(ax+by=c\)
+        </p>
+        <p class="text-center justify-center">
+            \(dx+ey=f\)
+        </p>
+
+        <div class="w-full flex flex-col items-center mt-6">
+            <canvas id="graphCanvas42" width="400" height="400"
+             style="border: 1px solid #ddd; background-color: #f9f9f9; margin-bottom: 10px;"></canvas>
+            <!-- Equation 1 Input -->
+            <div class="flex items-center space-x-2">
+                <label for="eq1_x" class="text-sm">Persamaan 1:</label>
+                <input id="eq1_x" type="number" placeholder="...x" class="w-16 px-2 py-1 border rounded text-sm" min="0"> <span>x</span>
+                <select id="eq1_sign" class="px-2 py-1 border rounded text-sm">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                </select>
+                <input id="eq1_y" type="number" placeholder="...y" class="w-16 px-2 py-1 border rounded text-sm" min="0"> <span>y</span>
+                <span>=</span>
+                <input id="eq1_c" type="number" placeholder="..." class="w-16 px-2 py-1 border rounded text-sm" min="0">
+                <button id="drawEq1" class="px-4 py-2 bg-blue-500 text-white rounded shadow text-sm">Draw</button>
+            </div>
+
+            <!-- Equation 2 Input -->
+            <div class="flex items-center space-x-2">
+                <label for="eq2_x" class="text-sm">Persamaan 2:</label>
+                <input id="eq2_x" type="number" placeholder="...x" class="w-16 px-2 py-1 border rounded text-sm" min="0"> <span>x</span>
+                <select id="eq2_sign" class="px-2 py-1 border rounded text-sm">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                </select>
+                <input id="eq2_y" type="number" placeholder="...y" class="w-16 px-2 py-1 border rounded text-sm" min="0"> <span>y</span>
+                <span>=</span>
+                <input id="eq2_c" type="number" placeholder="..." class="w-16 px-2 py-1 border rounded text-sm" min="0">
+                <button id="drawEq2" class="px-4 py-2 bg-blue-500 text-white rounded shadow text-sm">Draw</button>
+            </div>
+        </div>
+
+        <p>Gunakan grafik animasi di atas untuk menjawab pertanyaan berikut: </p>
+    </div>
+</div>
+
+<script>
+    const canvas42 = document.getElementById('graphCanvas42');
+    const ctx42 = canvas42.getContext('2d');
+
+    const width42 = canvas42.width;
+    const height42 = canvas42.height;
+    const centerX42 = width42 / 2;
+    const centerY42 = height42 / 2;
+    const scale42 = 20;
+
+    let currentLines = {};
+
+    function drawAxes42() {
+        ctx42.clearRect(0, 0, width42, height42);
+
+        ctx42.strokeStyle = '#333';
+        ctx42.lineWidth = 1;
+
+        // X-axis
+        ctx42.beginPath();
+        ctx42.moveTo(0, centerY42);
+        ctx42.lineTo(width42, centerY42);
+        ctx42.stroke();
+
+        // Y-axis
+        ctx42.beginPath();
+        ctx42.moveTo(centerX42, 0);
+        ctx42.lineTo(centerX42, height42);
+        ctx42.stroke();
+
+        // Axis ticks and labels
+        ctx42.font = '12px Arial';
+        ctx42.fillStyle = '#333';
+
+        for (let i = -10; i <= 10; i++) {
+            const x = centerX42 + i * scale42;
+            const y = centerY42 - i * scale42;
+
+            // X-axis ticks
+            ctx42.beginPath();
+            ctx42.moveTo(x, centerY42 - 5);
+            ctx42.lineTo(x, centerY42 + 5);
+            ctx42.stroke();
+
+            if (i !== 0) ctx42.fillText(i, x - 4, centerY42 + 15);
+
+            // Y-axis ticks
+            ctx42.beginPath();
+            ctx42.moveTo(centerX42 - 5, y);
+            ctx42.lineTo(centerX42 + 5, y);
+            ctx42.stroke();
+
+            if (i !== 0) ctx42.fillText(i, centerX42 + 8, y + 4);
+        }
+    }
+
+    function plotLine42(key, a, b, c, color = '#007BFF') {
+        if (currentLines[key]) {
+            drawAxes42(); // Clear existing lines before drawing
+            Object.keys(currentLines).forEach(k => {
+                if (k !== key) {
+                    const { a, b, c, color } = currentLines[k];
+                    drawSingleLine(a, b, c, color);
+                }
+            });
+        }
+
+        drawSingleLine(a, b, c, color);
+        currentLines[key] = { a, b, c, color };
+    }
+
+    function drawSingleLine(a, b, c, color) {
+        ctx42.strokeStyle = color;
+        ctx42.lineWidth = 2;
+
+        ctx42.beginPath();
+        let started = false;
+
+        for (let x = -10; x <= 10; x += 0.1) {
+            const y = (c - a * x) / b; // Rearranged equation: y = (c - ax) / b
+            const canvasX = centerX42 + x * scale42;
+            const canvasY = centerY42 - y * scale42;
+
+            if (canvasX >= 0 && canvasX <= width42 && canvasY >= 0 && canvasY <= height42) {
+                if (!started) {
+                    ctx42.moveTo(canvasX, canvasY);
+                    started = true;
+                } else {
+                    ctx42.lineTo(canvasX, canvasY);
+                }
+            }
+        }
+
+        ctx42.stroke();
+    }
+
+    document.getElementById('drawEq1').addEventListener('click', () => {
+        const x = Math.abs(parseFloat(document.getElementById('eq1_x').value));
+        const sign = document.getElementById('eq1_sign').value;
+        const y = Math.abs(parseFloat(document.getElementById('eq1_y').value));
+        const c = Math.abs(parseFloat(document.getElementById('eq1_c').value));
+
+        if (!isNaN(x) && !isNaN(y) && !isNaN(c)) {
+            const adjustedY = sign === '-' ? -y : y;
+            plotLine42('eq1', x, adjustedY, c, '#FF4500');
+        }
+    });
+
+    document.getElementById('drawEq2').addEventListener('click', () => {
+        const x = Math.abs(parseFloat(document.getElementById('eq2_x').value));
+        const sign = document.getElementById('eq2_sign').value;
+        const y = Math.abs(parseFloat(document.getElementById('eq2_y').value));
+        const c = Math.abs(parseFloat(document.getElementById('eq2_c').value));
+
+        if (!isNaN(x) && !isNaN(y) && !isNaN(c)) {
+            const adjustedY = sign === '-' ? -y : y;
+            plotLine42('eq2', x, adjustedY, c, '#007BFF');
+        }
+    });
+
+    drawAxes42();
+</script>

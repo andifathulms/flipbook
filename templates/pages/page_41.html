@@ -4,6 +4,16 @@
         background-color: #f9f9f9;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
+    .feedback {
+        margin-top: 4px;
+        font-size: 0.9rem;
+    }
+    .feedback.correct {
+        color: green;
+    }
+    .feedback.incorrect {
+        color: red;
+    }
 </style>
 
 <div class="flex flex-col items-center justify-center h-full">
@@ -25,9 +35,33 @@
         <p style="margin-top: 10px;">
             Gunakan grafik animasi di atas untuk menjawab pertanyaan berikut:
         </p>
-        <p>Persamaan 1 : </p>
-        <p>Persamaan 2 : </p>
-        <p>Persamaan 3 : </p>
+        <p>Persamaan 1 : 
+            <select id="answer1" class="px-2 py-1 border rounded">
+                <option value="">Pilih jawaban</option>
+                <option value="1_titik_potong">Ada 1 titik potong</option>
+                <option value="garis_berhimpit">Garis saling berhimpit</option>
+                <option value="tidak_titik_potong">Tidak memiliki titik potong</option>
+            </select>
+            <span id="feedback1" class="feedback"></span>
+        </p>
+        <p>Persamaan 2 : 
+            <select id="answer2" class="px-2 py-1 border rounded">
+                <option value="">Pilih jawaban</option>
+                <option value="1_titik_potong">Ada 1 titik potong</option>
+                <option value="garis_berhimpit">Garis saling berhimpit</option>
+                <option value="tidak_titik_potong">Tidak memiliki titik potong</option>
+            </select>
+            <span id="feedback2" class="feedback"></span>
+        </p>
+        <p>Persamaan 3 : 
+            <select id="answer3" class="px-2 py-1 border rounded">
+                <option value="">Pilih jawaban</option>
+                <option value="1_titik_potong">Ada 1 titik potong</option>
+                <option value="garis_berhimpit">Garis saling berhimpit</option>
+                <option value="tidak_titik_potong">Tidak memiliki titik potong</option>
+            </select>
+            <span id="feedback3" class="feedback"></span>
+        </p>
     </div>
 </div>
 
@@ -38,10 +72,9 @@
     const width41 = canvas41.width;
     const height41 = canvas41.height;
     const centerX41 = width41 / 2;
-    const centerY41 = height / 2;
+    const centerY41 = height41 / 2;
     const scale41 = 20;
 
-    // Equations represented as slope-intercept form (y = mx + b)
     const equations = {
         equation1: [
             { m: -2 / 3, b: 4 }, // 2x + 3y = 12
@@ -60,60 +93,32 @@
     function drawAxes() {
         ctx41.clearRect(0, 0, width41, height41);
 
-        // Draw X and Y axes
         ctx41.strokeStyle = '#333';
         ctx41.lineWidth = 1;
 
-        // X-axis
         ctx41.beginPath();
         ctx41.moveTo(0, centerY41);
         ctx41.lineTo(width41, centerY41);
         ctx41.stroke();
 
-        // Y-axis
         ctx41.beginPath();
         ctx41.moveTo(centerX41, 0);
         ctx41.lineTo(centerX41, height41);
         ctx41.stroke();
-
-        // Add ticks and labels
-        for (let i = -10; i <= 10; i++) {
-            const x = centerX41 + i * scale41;
-            const y = centerY41 - i * scale41;
-
-            // X-axis ticks
-            ctx41.beginPath();
-            ctx41.moveTo(x, centerY41 - 5);
-            ctx41.lineTo(x, centerY41 + 5);
-            ctx41.stroke();
-
-            // Y-axis ticks
-            ctx41.beginPath();
-            ctx41.moveTo(centerX41 - 5, y);
-            ctx41.lineTo(centerX41 + 5, y);
-            ctx41.stroke();
-        }
-
-        // Axis labels
-        ctx41.fillStyle = '#333';
-        ctx41.font = '14px Arial';
-        ctx41.fillText('X', width41 - 20, centerY41 - 10);
-        ctx41.fillText('Y', centerX41 + 10, 20);
     }
 
     function plotLine(m, b, color = '#007BFF') {
         ctx41.strokeStyle = color;
         ctx41.lineWidth = 2;
-    
+
         ctx41.beginPath();
         let started = false;
-    
+
         for (let x = -10; x <= 10; x += 0.1) {
-            const y = m * x + b; // Equation of the line
+            const y = m * x + b;
             const canvasX = centerX41 + x * scale41;
             const canvasY = centerY41 - y * scale41;
-    
-            // Only plot points that fit within the canvas
+
             if (canvasX >= 0 && canvasX <= width41 && canvasY >= 0 && canvasY <= height41) {
                 if (!started) {
                     ctx41.moveTo(canvasX, canvasY);
@@ -123,10 +128,9 @@
                 }
             }
         }
-    
+
         ctx41.stroke();
     }
-    
 
     function plotEquations(equationKey) {
         drawAxes();
@@ -138,20 +142,43 @@
         });
     }
 
-    // Event listeners for buttons
     document.getElementById('equation41_1').addEventListener('click', () => {
         plotEquations('equation1');
     });
-
     document.getElementById('equation41_2').addEventListener('click', () => {
         plotEquations('equation2');
     });
-
     document.getElementById('equation41_3').addEventListener('click', () => {
         plotEquations('equation3');
     });
 
-    // Initial draw (empty axes)
     drawAxes();
 
+    const correctAnswers = {
+        answer1: "1_titik_potong",
+        answer2: "garis_berhimpit",
+        answer3: "tidak_titik_potong"
+    };
+
+    function validateAnswer(answerId, feedbackId, correctValue) {
+        const answer = document.getElementById(answerId).value;
+        const feedback = document.getElementById(feedbackId);
+        if (answer === correctValue) {
+            feedback.textContent = "Benar ✓";
+            feedback.className = "feedback correct";
+        } else {
+            feedback.textContent = "Salah ✗";
+            feedback.className = "feedback incorrect";
+        }
+    }
+
+    document.getElementById('answer1').addEventListener('change', () => {
+        validateAnswer('answer1', 'feedback1', correctAnswers.answer1);
+    });
+    document.getElementById('answer2').addEventListener('change', () => {
+        validateAnswer('answer2', 'feedback2', correctAnswers.answer2);
+    });
+    document.getElementById('answer3').addEventListener('change', () => {
+        validateAnswer('answer3', 'feedback3', correctAnswers.answer3);
+    });
 </script>

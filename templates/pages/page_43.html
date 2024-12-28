@@ -1,0 +1,266 @@
+<div class="w-full flex flex-col items-center mt-6">
+
+    <div class="flex flex-col space-y-4 mt-4 w-full max-w-md">
+        <!-- Question 1 -->
+        <div>
+            <p>1. SPLDV yang Memiliki 1 titik potong jika koefisien</p>
+            <div class="flex items-center space-x-2 text-sm">
+                <select id="q1-a" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q1-d" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>≠</strong>
+                <select id="q1-b" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q1-e" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select>
+                <button class="ml-2 px-4 py-1 bg-blue-500 text-white rounded text-sm" onclick="checkAnswer1()">Check</button>
+            </div>
+        </div>
+        <!-- Question 2 -->
+        <div>
+            <p>2. SPLDV yang Memiliki garis berhimpit jika koefisien</p>
+            <div class="flex items-center space-x-2 text-sm">
+                <select id="q2-a" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q2-d" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>=</strong>
+                <select id="q2-b" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q2-e" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>=</strong>
+                <select id="q2-c" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q2-f" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select>
+                <button class="ml-2 px-4 py-1 bg-blue-500 text-white rounded text-sm" onclick="checkAnswer2()">Check</button>
+            </div>
+        </div>
+        <!-- Question 3 -->
+        <div>
+            <p>3. SPLDV yang Tidak memiliki titik potong jika koefisien</p>
+            <div class="flex items-center space-x-2 text-sm">
+                <select id="q3-a1" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q3-d1" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>=</strong>
+                <select id="q3-b" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q3-e" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select> <strong>namun</strong>
+            </div>
+            <div class="flex items-center space-x-2 text-sm" style="margin-top: 5px;">
+                <select id="q3-c" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q3-f" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>≠</strong>
+                <select id="q3-a2" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select><strong>/</strong>
+                <select id="q3-d2" class="w-16 px-1 py-1 border rounded">
+                    <option value="">-</option>
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                    <option value="e">e</option>
+                    <option value="f">f</option>
+                </select>
+                <button class="ml-2 px-4 py-1 bg-blue-500 text-white rounded text-sm" onclick="checkAnswer3()">Check</button>
+            </div>
+        </div>
+
+        <p>Kita dapat simpulkan bersama-sama bahwa: </p>
+        <p style="margin-top: 2px;">
+            1. Sistem SPLDV akan memiliki <strong>satu titik potong</strong> atau solusi tunggal jika kedua garis memiliki kemiringan yang berbeda. 
+            Mengapa ini terjadi, jelaskan alasannya! Artinya, jika kedua persamaan 
+            <input type="text" id="inline-input" placeholder="Isi jawaban disini" class="border px-1 rounded" style="width: 10rem;">, maka garis-garis tersebut akan berpotongan di satu titik.
+        </p>
+        <p style="margin-top: 2px;">
+            2.	Sistem SPLDV akan memiliki <strong>tak hingga banyak solusi</strong> jika kedua garis tersebut <strong>berhimpit</strong>. 
+            Mengapa ini terjadi, jelaskan alasannya!  Jika koefisien a,b, dan konstanta c dari persamaan pertama adalah
+            <input type="text" id="inline-input" placeholder="Isi jawaban disini" class="border px-1 rounded" style="width: 10rem;"> dari koefisien d,e, dan f dari persamaan kedua
+        </p>
+        <p style="margin-top: 2px;">
+            3.	Sistem SPLDV <strong>tidak memiliki solusi</strong> jika kedua garis <strong>sejajar dan tidak berpotongan</strong>. 
+            Mengapa ini terjadi, jelaskan alasannya!  Kondisi ini terjadi ketika koefisien dari kedua persamaan merupakan 
+            <input type="text" id="inline-input" placeholder="Isi jawaban disini" class="border px-1 rounded" style="width: 10rem;">, tetapi konstanta dari kedua persamaan
+            <input type="text" id="inline-input" placeholder="Isi jawaban disini" class="border px-1 rounded" style="width: 10rem;">.
+        </p>
+    </div>
+</div>
+
+<script>
+    function highlightAnswer(selectElement, isCorrect) {
+        if (isCorrect) {
+            selectElement.style.border = "1px solid green";
+        } else {
+            selectElement.style.border = "1px solid red";
+        }
+    }
+    
+    function checkAnswer1() {
+        const a = document.getElementById('q1-a');
+        const d = document.getElementById('q1-d');
+        const b = document.getElementById('q1-b');
+        const e = document.getElementById('q1-e');
+    
+        highlightAnswer(a, a.value === "a");
+        highlightAnswer(d, d.value === "d");
+        highlightAnswer(b, b.value === "b");
+        highlightAnswer(e, e.value === "e");
+    }
+    
+    function checkAnswer2() {
+        const a = document.getElementById('q2-a');
+        const d = document.getElementById('q2-d');
+        const b = document.getElementById('q2-b');
+        const e = document.getElementById('q2-e');
+        const c = document.getElementById('q2-c');
+        const f = document.getElementById('q2-f');
+    
+        highlightAnswer(a, a.value === "a");
+        highlightAnswer(d, d.value === "d");
+        highlightAnswer(b, b.value === "b");
+        highlightAnswer(e, e.value === "e");
+        highlightAnswer(c, c.value === "c");
+        highlightAnswer(f, f.value === "f");
+    }
+    
+    function checkAnswer3() {
+        const a1 = document.getElementById('q3-a1');
+        const d1 = document.getElementById('q3-d1');
+        const b = document.getElementById('q3-b');
+        const e = document.getElementById('q3-e');
+        const c = document.getElementById('q3-c');
+        const f = document.getElementById('q3-f');
+        const a2 = document.getElementById('q3-a2');
+        const d2 = document.getElementById('q3-d2');
+    
+        highlightAnswer(a1, a1.value === "a");
+        highlightAnswer(d1, d1.value === "d");
+        highlightAnswer(b, b.value === "b");
+        highlightAnswer(e, e.value === "e");
+        highlightAnswer(c, c.value === "c");
+        highlightAnswer(f, f.value === "f");
+        highlightAnswer(a2, a2.value === "a");
+        highlightAnswer(d2, d2.value === "d");
+    }    
+</script>
